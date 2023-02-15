@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:52:40 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/14 09:43:26 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:50:21 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char **ft_map_matrix(char *map, map_data data)
 		}
 		i++;
 	}
-	return(map_matrix);
+	return (map_matrix);
 }
 
 //ALGO VERIFICATION TRAJET POSSIBLE
