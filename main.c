@@ -1,19 +1,4 @@
-#include "So_long.h"
-
-typedef struct    data_s
-{
-    void          *mlx_ptr;
-    void          *mlx_win;
-	map_data	carte;
-}                 data_t;
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+#include "so_long.h"
 
 int	*find_player(map_data *map)
 {
@@ -40,62 +25,7 @@ int	*find_player(map_data *map)
 	return (position);
 }
 
-void	side_movement(map_data *map, char direction)
-{
-
-	int	*pos;
-	pos = find_player(map);
-	if (!pos)
-		return;
-	if (direction == 'D' && pos[1] < map->columns - 1)
-	{
-			if (map->map_matrix[pos[0]][pos[1] + 1] != '1' && map->map_matrix[pos[0]][pos[1] + 1] != 'E')
-			{
-				map->map_matrix[pos[0]][pos[1] + 1] = 'P';
-				map->map_matrix[pos[0]][pos[1]] = '0';
-			}
-	}
-	else if (direction == 'Q' && pos[1] > 0)
-	{
-			if (map->map_matrix[pos[0]][pos[1] - 1] != '1' && map->map_matrix[pos[0]][pos[1] - 1] != 'E')
-			{
-				map->map_matrix[pos[0]][pos[1] - 1] = 'P';
-				map->map_matrix[pos[0]][pos[1]] = '0';
-			}
-	}
-	free (pos);
-}
-
-void	vertical_movement(map_data *map, char direction)
-{
-	int	*pos;
-
-	pos = find_player(map);
-	if (!pos)
-		return;
-	if (direction == 'Z' && pos[0] > 0)
-	{
-			if (map->map_matrix[pos[0] - 1][pos[1]] != '1' && map->map_matrix[pos[0] - 1][pos[1]] != 'E')
-			{
-				map->map_matrix[pos[0] - 1][pos[1]] = 'P';
-				map->map_matrix[pos[0]][pos[1]] = '0';
-			}
-	}
-	else if (direction == 'S' && pos[0] < map->lines - 1)
-	{
-			if (map->map_matrix[pos[0] + 1][pos[1]] != '1' && map->map_matrix[pos[0] + 1][pos[1]] != 'E')
-			{
-				map->map_matrix[pos[0] + 1][pos[1]] = 'P';
-				map->map_matrix[pos[0]][pos[1]] = '0';
-			}
-	}
-	free (pos);
-}
-void	init_sprite()
-{
-
-}
-void	*sprite(data_t data, char letter)
+void	*sprite(game data, char letter)
 {
 	int		img_width;
 	int		img_height;
@@ -127,7 +57,7 @@ void	*sprite(data_t data, char letter)
 		return (NULL);
 }
 
-void	fill_screen(data_t data, int res_x, int res_y, map_data carte)
+void	fill_screen(game data, int res_x, int res_y, map_data carte)
 {
 
 	int x = 0;
@@ -149,26 +79,38 @@ void	fill_screen(data_t data, int res_x, int res_y, map_data carte)
 	}
 }
 
-int	actions(int keycode, data_t *data)
+void	end_game(game *data)
 {
-	int		img_width;
-	int		img_height;
-
-	if (keycode == Z)
-		vertical_movement(&data->carte, 'Z');
-	else if (keycode == Q)
-		side_movement(&data->carte, 'Q');
-	else if (keycode == S)
-		vertical_movement(&data->carte, 'S');
-	else if (keycode == D)
-		side_movement(&data->carte, 'D');
-	else if (keycode == esc)
-	{
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 		printf("ESC DESTROYED\n");
 		exit(1);
+}
+
+int	actions(int keycode, game *data)
+{
+	int		movement;
+	int		img_width;
+	int		img_height;
+
+	if (data->player.status)
+		end_game(data);
+	movement = data->player.steps;
+	if (keycode == Z)
+		vertical_movement(data, 'Z');
+	else if (keycode == Q)
+		side_movement(data, 'Q');
+	else if (keycode == S)
+		vertical_movement(data, 'S');
+	else if (keycode == D)
+		side_movement(data, 'D');
+	else if (keycode == esc)
+		end_game(data);
+	movement -= data->player.steps;
+	if (movement)
+	{
+		fill_screen(*data, data->carte.columns * 96, data->carte.lines * 96, data->carte);
+		printf("Steps : %d\n", data->player.steps);
 	}
-	fill_screen(*data, data->carte.columns * 96, data->carte.lines * 96, data->carte);
 }
 
 int main(void)
@@ -176,17 +118,20 @@ int main(void)
 	int res_x;
 	int res_y;
 
-    data_t        data;
+    game        data;
 	t_data		img;
 
-	data.carte = check_map_validity("map.ber");
+	data.carte = check_map_validity("./maps/map.ber");
 	if (data.carte.validity)
-		data.carte.map_matrix = ft_map_matrix("map.ber", data.carte);
+		data.carte.map_matrix = ft_map_matrix("./maps/map.ber", data.carte);
 	else
 	{
 		printf("la carte n'est pas valide.\n");
 		exit (1);
 	}
+	data.player.collected = 0;
+	data.player.steps = 0;
+	data.player.status = 0;
 	res_x = data.carte.columns * 96;
 	res_y = data.carte.lines * 96;
 	//setup fenêtre
