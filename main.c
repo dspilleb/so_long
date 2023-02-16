@@ -110,6 +110,7 @@ int	actions(int keycode, game *data)
 	{
 		fill_screen(*data, data->carte.columns * 96, data->carte.lines * 96, data->carte);
 		printf("Steps : %d\n", data->player.steps);
+		mlx_string_put(data->mlx_ptr, data->mlx_win, 30, 30, 0xFFFFFF, ft_itoa(data->player.steps));
 	}
 }
 
