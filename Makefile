@@ -14,7 +14,7 @@ SRC_GNL = $(addprefix GNL/, $(GNL))
 MAP = parsing.c map_validity.c
 SRC_MAP = $(addprefix ./map_parsing/, $(MAP))
 
-GAME =	movement.c
+GAME =	movement.c sprites.c
 SRC_GAME = $(addprefix ./, $(GAME))
 
 OBJ = *.o

@@ -7,9 +7,9 @@ void	*sprite(game data, char letter, int keycode)
 	else if (letter == 'E')
 	{
 		if (data.player.collected == data.carte.collectibles)
-			return (data.s.exit_closed);
-		else
 			return (data.s.exit_opened);
+		else
+			return (data.s.exit_closed);
 	}
 	else if (letter == '1')
 		return (data.s.wall);
@@ -29,19 +29,19 @@ void	*sprite(game data, char letter, int keycode)
 	return (NULL);
 }
 
-void	init_sprites(game data)
+void	init_sprites(game *data)
 {
 	int		img_width;
 	int		img_height;
-	data.s.collectible = mlx_xpm_file_to_image(data.mlx_ptr, "./source/collectible.xpm", &img_width, &img_height);
-	data.s.wall = mlx_xpm_file_to_image(data.mlx_ptr, "./source/wall.xpm", &img_width, &img_height);
-	data.s.wooden_floor = mlx_xpm_file_to_image(data.mlx_ptr, "./source/wooden_floor.xpm", &img_width, &img_height);
-	data.s.exit_opened = mlx_xpm_file_to_image(data.mlx_ptr, "./source/opened_door.xpm", &img_width, &img_height);
-	data.s.exit_closed = mlx_xpm_file_to_image(data.mlx_ptr, "./source/closed_door.xpm", &img_width, &img_height);
-	data.s.player_south = mlx_xpm_file_to_image(data.mlx_ptr, "./source/player_south.xpm", &img_width, &img_height);
-	data.s.player_east = mlx_xpm_file_to_image(data.mlx_ptr, "./source/player_east.xpm", &img_width, &img_height);
-	data.s.player_north = mlx_xpm_file_to_image(data.mlx_ptr, "./source/player_north.xpm", &img_width, &img_height);
-	data.s.player_west = mlx_xpm_file_to_image(data.mlx_ptr, "./source/player_west.xpm", &img_width, &img_height);
+	data->s.collectible = mlx_xpm_file_to_image(data->mlx_ptr, "./source/collectible.xpm", &img_width, &img_height);
+	data->s.wall = mlx_xpm_file_to_image(data->mlx_ptr, "./source/wall.xpm", &img_width, &img_height);
+	data->s.wooden_floor = mlx_xpm_file_to_image(data->mlx_ptr, "./source/wooden_floor.xpm", &img_width, &img_height);
+	data->s.exit_opened = mlx_xpm_file_to_image(data->mlx_ptr, "./source/opened_door.xpm", &img_width, &img_height);
+	data->s.exit_closed = mlx_xpm_file_to_image(data->mlx_ptr, "./source/closed_door.xpm", &img_width, &img_height);
+	data->s.player_south = mlx_xpm_file_to_image(data->mlx_ptr, "./source/player_south.xpm", &img_width, &img_height);
+	data->s.player_east = mlx_xpm_file_to_image(data->mlx_ptr, "./source/player_east.xpm", &img_width, &img_height);
+	data->s.player_north = mlx_xpm_file_to_image(data->mlx_ptr, "./source/player_north.xpm", &img_width, &img_height);
+	data->s.player_west = mlx_xpm_file_to_image(data->mlx_ptr, "./source/player_west.xpm", &img_width, &img_height);
 }
 
 void	fill_screen(game data, int res_x, int res_y, map_data carte, int keycode)

@@ -14,7 +14,19 @@
 # define S 115
 # define esc 65307
 
-typedef struct	s_data {
+typedef struct
+{
+	void	*collectible;
+	void	*wall;
+	void	*wooden_floor;
+	void	*exit_opened;
+	void	*exit_closed;
+	void	*player_south;
+	void	*player_east;
+	void	*player_north;
+	void	*player_west;
+} sprites;
+typedef struct	img {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -33,7 +45,7 @@ typedef struct	map
 	int		columns;
 } map_data;
 
-typedef struct
+typedef struct player
 {
 	int	collected;
 	int	steps;
@@ -46,10 +58,11 @@ typedef struct
     void          *mlx_win;
 	map_data	carte;
 	p_data		player;
+	sprites		s;
 }                 game;
 
 void	end_game(game *data);
-void	*sprite(game data, char letter);
+void	*sprite(game data, char letter, int keycode);
 int	*find_player(map_data *map);
 void	check_walls(char *line, int count, map_data *data);
 void add_map_data(map_data *data, char *line, int count);
@@ -62,5 +75,7 @@ char	**ft_map_matrix(char *map, map_data data);
 int		can_move(game *data, char letter);
 void	side_movement(game *data, char direction);
 void	vertical_movement(game *data, char direction);
+void	fill_screen(game data, int res_x, int res_y, map_data carte, int keycode);
+void	init_sprites(game *data);
 
 #endif
