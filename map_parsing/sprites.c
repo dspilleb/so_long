@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/17 13:15:47 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:16:27 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*sprite(t_game data, char letter, int keycode)
 		else if (keycode == Q)
 			return (data.s.player_west);
 		else
-			return(data.s.player_south);
+			return (data.s.player_south);
 	}
 	return (NULL);
 }
