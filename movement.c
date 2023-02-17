@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	side_movement(game *data, char direction)
+void	side_movement(t_game *data, char direction)
 {
 
 	int	*pos;
@@ -28,7 +28,7 @@ void	side_movement(game *data, char direction)
 	free (pos);
 }
 
-void	vertical_movement(game *data, char direction)
+void	vertical_movement(t_game *data, char direction)
 {
 	int	*pos;
 
@@ -56,7 +56,7 @@ void	vertical_movement(game *data, char direction)
 	free (pos);
 }
 
-int	can_move(game *data, char letter)
+int	can_move(t_game *data, char letter)
 {
 	if (letter == '1')
 		return (0);
@@ -66,7 +66,10 @@ int	can_move(game *data, char letter)
 		return (1);
 	}
 	else if (letter == 'E' && data->player.collected != data->carte.collectibles)
+	{
+		printf("Vous n'avez pas récolté tout les collectibles !\n");
 		return (0);
+	}
 	if (letter == 'E' && data->player.collected == data->carte.collectibles)
 		data->player.status = 1;
 	return (1);

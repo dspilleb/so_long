@@ -1,6 +1,18 @@
-#include "./so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprites.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
+/*   Updated: 2023/02/17 13:03:09 by dspilleb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	*sprite(game data, char letter, int keycode)
+#include "../so_long.h"
+
+void	*sprite(t_game data, char letter, int keycode)
 {
 	if (letter == '0')
 		return (data.s.wooden_floor);
@@ -29,10 +41,11 @@ void	*sprite(game data, char letter, int keycode)
 	return (NULL);
 }
 
-void	init_sprites(game *data)
+void	init_t_sprites(t_game *data)
 {
 	int		img_width;
 	int		img_height;
+
 	data->s.collectible = mlx_xpm_file_to_image(data->mlx_ptr, "./source/collectible.xpm", &img_width, &img_height);
 	data->s.wall = mlx_xpm_file_to_image(data->mlx_ptr, "./source/wall.xpm", &img_width, &img_height);
 	data->s.wooden_floor = mlx_xpm_file_to_image(data->mlx_ptr, "./source/wooden_floor.xpm", &img_width, &img_height);
@@ -44,20 +57,23 @@ void	init_sprites(game *data)
 	data->s.player_west = mlx_xpm_file_to_image(data->mlx_ptr, "./source/player_west.xpm", &img_width, &img_height);
 }
 
-void	fill_screen(game data, int res_x, int res_y, map_data carte, int keycode)
+void	fill_screen(t_game data, int res_x, int res_y, int keycode)
 {
+	int	x;
+	int	y;
+	int	i;
+	int	j;
 
-	int x = 0;
-	int y = 0;
-	int i = 0;
-	int j = 0;
-	while (carte.map_matrix[i])
+	y = 0;
+	i = 0;
+	while (data.carte.map_matrix[i])
 	{
 		x = 0;
 		j = 0;
-		while (carte.map_matrix[i][j])
+		while (data.carte.map_matrix[i][j])
 		{
-			mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, sprite(data, carte.map_matrix[i][j], keycode), x, y);
+			mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, \
+			sprite(data, data.carte.map_matrix[i][j], keycode), x, y);
 			x += 96;
 			j++;
 		}

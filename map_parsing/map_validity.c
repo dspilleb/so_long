@@ -6,13 +6,13 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:50:50 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/16 12:30:20 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:44:20 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	check_walls(char *line, int count, map_data *data)
+void	check_walls(char *line, int count, t_map_data *data)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ void	check_walls(char *line, int count, map_data *data)
 	return ;
 }
 
-void	add_map_data(map_data *data, char *line, int count)
+void	add_t_map_data(t_map_data *data, char *line, int count)
 {
 	int	i;
 
@@ -62,7 +62,7 @@ void	add_map_data(map_data *data, char *line, int count)
 	return ;
 }
 
-void	init_struct(map_data *data)
+void	init_struct(t_map_data *data)
 {
 	data->lines = 0;
 	data->columns = -1;
@@ -72,7 +72,7 @@ void	init_struct(map_data *data)
 	data->validity = 0;
 }
 
-void	map_len(map_data *data, char *map)
+void	map_len(t_map_data *data, char *map)
 {
 	int		fd;
 	char	*line;
@@ -89,11 +89,11 @@ void	map_len(map_data *data, char *map)
 	}
 }
 
-map_data	check_map_validity(char *map)
+t_map_data	check_map_validity(char *map)
 {
 	int			count;
 	char		*line;
-	map_data	data;
+	t_map_data	data;
 	int			fd;
 
 	count = 0;
@@ -107,7 +107,7 @@ map_data	check_map_validity(char *map)
 		if (!line)
 			break ;
 		check_walls(line, count, &data);
-		add_map_data(&data, line, count);
+		add_t_map_data(&data, line, count);
 		free (line);
 		count++;
 	}
@@ -115,28 +115,3 @@ map_data	check_map_validity(char *map)
 		data.validity = 0;
 	return (data);
 }
-/*
-int	main(void)
-{
-	int	i;
-
-	i = 0;
-	map_data result;
-	result = check_map_validity("map.ber");
-	if (result.validity)
-	{
-		printf("YOUPPI\n");
-		result.map_matrix = ft_map_matrix("map.ber", result);
-		printf("Voici la matrice :\n");
-		while (result.map_matrix[i])
-		{
-			printf("%s\n", result.map_matrix[i]);
-			i++;
-		}
-		free_all(result.map_matrix);
-
-	}
-	else
-		printf("MAP DE MERDE / PAS OUF");
-	return (0);
-}*/

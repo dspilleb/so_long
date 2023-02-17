@@ -6,13 +6,13 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:52:40 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/16 12:30:24 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:57:38 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	free_all(char **str)
+void	free_matrix(char **str)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ void	free_all(char **str)
 
 char	*line_extractor(char *line, int len)
 {
-	int	i;
+	int		i;
 	char	*end_line;
 
 	i = 0;
@@ -40,41 +40,30 @@ char	*line_extractor(char *line, int len)
 	}
 	end_line[i] = '\0';
 	return (end_line);
-
 }
 
-char **ft_map_matrix(char *map, map_data data)
+char	**ft_map_matrix(char *map, t_map_data data)
 {
 	int		fd;
 	int		i;
 	char	**map_matrix;
-	char	*tmp_line;
 	char	*line;
 
-	i = 0;
+	i = -1;
 	fd = open(map, O_RDONLY);
 	map_matrix = (char **)ft_calloc(sizeof(char *), data.lines + 1);
 	if (!map_matrix)
 		return (NULL);
-	map_matrix[data.lines] = NULL;
-	while (i < data.lines)
+	while (++i < data.lines)
 	{
 		line = get_next_line(fd);
-		if (!line)
-		{
-			free_all(map_matrix);
-			return (NULL);
-		}
 		map_matrix[i] = line_extractor(line, data.columns);
 		free (line);
 		if (!map_matrix[i])
 		{
-			free_all(map_matrix);
-			return NULL;
+			free_matrix(map_matrix);
+			return (NULL);
 		}
-		i++;
 	}
 	return (map_matrix);
 }
-
-//ALGO VERIFICATION TRAJET POSSIBLE
