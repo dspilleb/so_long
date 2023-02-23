@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "./GNL/get_next_line.h"
-# include "./libft/libft.h"
+# include "../GNL/get_next_line.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
