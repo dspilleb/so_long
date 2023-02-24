@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/23 18:37:44 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:26:32 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	player_idle(t_game *data)
 	pos = find_player(&data->carte);
 	y = pos[0] * 96;
 	x = pos[1] * 96;
-	if (count > 4)
+	if (count > 3)
 		count = 0;
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.env.wooden_floor, x, y);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.player.idle[count], x, y);

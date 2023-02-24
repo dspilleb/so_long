@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/23 14:03:56 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:37:29 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ typedef struct env_sprites
 
 typedef struct player_sprites
 {
-	void 	**idle[5];
-	void	*player_east;
-	void	*player_north;
-	void	*player_west;
+	void 	***idle[4];
+	void 	***movement[4];
+	void	**death[2];
+	void	***attack[4];
 
 } t_player_sprites;
 typedef struct sprites
