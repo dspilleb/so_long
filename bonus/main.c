@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/24 13:26:32 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:20:33 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,30 +63,13 @@ int	actions(int keycode, t_game *data)
 	movement -= data->player.steps;
 	if (movement)
 	{
-		fill_screen (*data, data->carte.columns * 96, \
-		data->carte.lines * 96, keycode);
+		fill_screen (*data);
 		printf("Steps : %d\n", data->player.steps);
 		printf("facing : %C\n", data->player.facing);
 	}
 	if (data->player.status)
 		end_t_game(data);
 	return (0);
-}
-
-void	player_idle(t_game *data)
-{
-	static int count;
-	int *pos;
-	int x;
-	int y;
-	pos = find_player(&data->carte);
-	y = pos[0] * 96;
-	x = pos[1] * 96;
-	if (count > 3)
-		count = 0;
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.env.wooden_floor, x, y);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.player.idle[count], x, y);
-	count++;
 }
 
 int	count(t_game *data)
@@ -101,7 +84,20 @@ void	init_player(t_p_data *player)
 	player->collected = 0;
 	player->steps = 0;
 	player->status = 0;
-	player->facing = 'S';
+	player->facing = 0;
+}
+
+void	init_game(t_game *data, t_data *img)
+{
+	data->res_x = data->carte.columns * 96;
+	data->res_y = data->carte.lines * 96;
+	data->mlx_ptr = mlx_init();
+	data->mlx_win = mlx_new_window(data->mlx_ptr, data->res_x , \
+	data->res_y, "./so_long");
+	mlx_do_key_autorepeatoff(data->mlx_ptr);
+	img->img = mlx_new_image (data->mlx_ptr, data->res_x, data->res_y);
+	if (data->mlx_win == NULL || data->mlx_ptr == NULL)
+		end_t_game(data);
 }
 
 int	main(void)
@@ -117,17 +113,10 @@ int	main(void)
 		printf("la carte n'est pas valide.\n");
 		exit (1);
 	}
+	init_game(&data, &img);
 	init_player(&data.player);
-	data.mlx_ptr = mlx_init();
-	data.mlx_win = mlx_new_window(data.mlx_ptr, data.carte.columns * 96, \
-	data.carte.lines * 96, "./so_long");
-	mlx_do_key_autorepeatoff(data.mlx_ptr);
-	if (data.mlx_win == NULL || data.mlx_ptr == NULL)
-		return (EXIT_FAILURE);
-	img.img = mlx_new_image (data.mlx_ptr, data.carte.columns * 96, \
-	data.carte.lines * 96);
 	init_t_sprites(&data);
-	fill_screen (data, data.carte.columns * 96, data.carte.lines * 96, S);
+	fill_screen (data);
 	mlx_hook(data.mlx_win, 2, 1L << 0, actions, &data);
 	mlx_hook(data.mlx_win, 17, 1L << 2, end_t_game, &data);
 	mlx_loop_hook(data.mlx_ptr, count, &data);

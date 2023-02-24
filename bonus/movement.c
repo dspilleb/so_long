@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:14:27 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/23 18:33:04 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:06:10 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	side_movement(t_game *data, char direction)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0]][pos[1] + 1]))
 		{
-			data->player.facing = direction;
+			data->player.facing = 1;
 			data->carte.map_matrix[pos[0]][pos[1] + 1] = 'P';
 			data->carte.map_matrix[pos[0]][pos[1]] = '0';
 			data->player.steps++;
@@ -33,7 +33,7 @@ void	side_movement(t_game *data, char direction)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0]][pos[1] - 1]))
 		{
-			data->player.facing = direction;
+			data->player.facing = 3;
 			data->carte.map_matrix[pos[0]][pos[1] - 1] = 'P';
 			data->carte.map_matrix[pos[0]][pos[1]] = '0';
 			data->player.steps++;
@@ -53,7 +53,7 @@ void	vertical_movement(t_game *data, char direction)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0] - 1][pos[1]]))
 		{
-			data->player.facing = direction;
+			data->player.facing = 0;
 			data->carte.map_matrix[pos[0] - 1][pos[1]] = 'P';
 			data->carte.map_matrix[pos[0]][pos[1]] = '0';
 			data->player.steps++;
@@ -63,7 +63,7 @@ void	vertical_movement(t_game *data, char direction)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0] + 1][pos[1]]))
 		{
-			data->player.facing = direction;
+			data->player.facing = 1;
 			data->carte.map_matrix[pos[0] + 1][pos[1]] = 'P';
 			data->carte.map_matrix[pos[0]][pos[1]] = '0';
 			data->player.steps++;

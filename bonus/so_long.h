@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/24 13:37:29 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:52:01 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ typedef struct env_sprites
 
 typedef struct player_sprites
 {
-	void 	***idle[4];
-	void 	***movement[4];
-	void	**death[2];
-	void	***attack[4];
+	void	***idle;
+	void	***movement;
+	void	**death;
+	void	***attack;
 
 } t_player_sprites;
 typedef struct sprites
@@ -73,7 +73,7 @@ typedef struct player
 	int	collected;
 	int	steps;
 	int	status;
-	char facing;
+	int facing;
 }	t_p_data;
 
 typedef struct game
@@ -81,6 +81,8 @@ typedef struct game
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_map_data	carte;
+	int			res_x;
+	int			res_y;
 	t_p_data	player;
 	t_sprites	s;
 }	t_game;
@@ -88,7 +90,7 @@ typedef struct game
 void init_player_sprites(t_game *data, void **arr, int size, char *path);
 void		init_env_sprites(t_game *data);
 int			end_t_game(t_game *data);
-void		*sprite(t_game data, char letter, int keycode);
+void		*sprite(t_game data, char letter);
 int			*find_player(t_map_data *map);
 void		check_walls(char *line, int count, t_map_data *data);
 void		add_t_map_data(t_map_data *data, char *line, int count);
@@ -101,7 +103,7 @@ char		**ft_map_matrix(char *map, t_map_data data);
 int			can_move(t_game *data, char letter);
 void		side_movement(t_game *data, char direction);
 void		vertical_movement(t_game *data, char direction);
-void		fill_screen(t_game data, int res_x, int res_y, int keycode);
+void		fill_screen(t_game data);
 void		init_t_sprites(t_game *data);
 
 #endif
