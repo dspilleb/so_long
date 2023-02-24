@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/23 13:23:01 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:37:44 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	actions(int keycode, t_game *data)
 	return (0);
 }
 
-void	render_player(t_game *data)
+void	player_idle(t_game *data)
 {
 	static int count;
 	int *pos;
@@ -84,6 +84,7 @@ void	render_player(t_game *data)
 	x = pos[1] * 96;
 	if (count > 4)
 		count = 0;
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.env.wooden_floor, x, y);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.player.idle[count], x, y);
 	count++;
 }
@@ -91,8 +92,8 @@ void	render_player(t_game *data)
 int	count(t_game *data)
 {
 	static int count;
-	if (count % 1500 == 0)
-		render_player(data);
+	if (count % 2000 == 0)
+		player_idle(data);
 	count++;
 }
 void	init_player(t_p_data *player)

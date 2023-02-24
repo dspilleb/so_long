@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/23 13:56:46 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:32:37 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,8 @@ void	*sprite(t_game data, char letter, int keycode)
 		return (data.s.env.wall);
 	else if (letter == 'C')
 		return (data.s.env.collectible);
-	else if (letter == 'P')
-	{
-		if (keycode == Z)
-			return (data.s.player.player_north);
-		else if (keycode == D)
-			return (data.s.player.player_east);
-		else if (keycode == Q)
-			return (data.s.player.player_west);
-		else
-			return (data.s.player.idle[0]);
-	}
+	else
+		return(data.s.env.wooden_floor);
 	return (NULL);
 }
 
@@ -47,7 +38,7 @@ void	init_t_sprites(t_game *data)
 	int		img_height;
 
 	init_env_sprites(data);
-	init_player_sprites(data, &data->s.player.idle, 4, "./source/player_static");
+	init_player_sprites(data, &data->s.player.idle, 4, "./source/idle/player_static");
 }
 
 void init_player_sprites(t_game *data, void **arr, int size, char *path)

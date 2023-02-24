@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:14:27 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/23 12:02:37 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:33:04 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	side_movement(t_game *data, char direction)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0]][pos[1] + 1]))
 		{
+			data->player.facing = direction;
 			data->carte.map_matrix[pos[0]][pos[1] + 1] = 'P';
 			data->carte.map_matrix[pos[0]][pos[1]] = '0';
 			data->player.steps++;
@@ -32,12 +33,12 @@ void	side_movement(t_game *data, char direction)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0]][pos[1] - 1]))
 		{
+			data->player.facing = direction;
 			data->carte.map_matrix[pos[0]][pos[1] - 1] = 'P';
 			data->carte.map_matrix[pos[0]][pos[1]] = '0';
 			data->player.steps++;
 		}
 	}
-	data->player.facing = direction;
 	free (pos);
 }
 
@@ -52,6 +53,7 @@ void	vertical_movement(t_game *data, char direction)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0] - 1][pos[1]]))
 		{
+			data->player.facing = direction;
 			data->carte.map_matrix[pos[0] - 1][pos[1]] = 'P';
 			data->carte.map_matrix[pos[0]][pos[1]] = '0';
 			data->player.steps++;
@@ -61,13 +63,18 @@ void	vertical_movement(t_game *data, char direction)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0] + 1][pos[1]]))
 		{
+			data->player.facing = direction;
 			data->carte.map_matrix[pos[0] + 1][pos[1]] = 'P';
 			data->carte.map_matrix[pos[0]][pos[1]] = '0';
 			data->player.steps++;
 		}
 	}
-	data->player.facing = direction;
 	free (pos);
+}
+
+void	movement_animation(t_game data, int x, int y)
+{
+
 }
 
 int	can_move(t_game *data, char letter)
