@@ -6,37 +6,38 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:03:08 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 14:54:51 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:04:28 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	player_idle(t_game *data)
 {
-	static int frame;
-	int *pos;
-	int x;
-	int y;
-	int dir;
+	static int	frame;
+	int			x;
+	int			y;
+	int			dir;
+	int			*pos;
 
-	dir = data->player.facing;
 	pos = find_player(&data->carte);
 	y = pos[0] * 96;
 	x = pos[1] * 96;
+	dir = data->player.facing;
 	if (frame > 3)
 		frame = 0;
-	put_background(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.player.idle[dir][frame], x, y);
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
+	data->s.player.idle[dir][frame], x, y);
 	frame++;
+	free(pos);
 }
 
 void	player_movement(t_game *data)
 {
-	static int frame;
+	static int	frame;
 	static int	x;
 	static int	y;
-	int dir;
+	int			dir;
 
 	dir = data->player.facing;
 	if (frame == 0)
@@ -44,27 +45,25 @@ void	player_movement(t_game *data)
 		x = data->player.pos.x;
 		y = data->player.pos.y;
 	}
-	x += (data->player.pos.to_x - data->player.pos.x) / 4;
-	y += (data->player.pos.to_y - data->player.pos.y) / 4;
+	x += (data->player.pos.to_x - data->player.pos.x) / 6;
+	y += (data->player.pos.to_y - data->player.pos.y) / 6;
 	if ((x == data->player.pos.to_x && y == data->player.pos.to_y) || frame > 5)
 	{
 		frame = 0;
 		data->player.status = 0;
-		put_background(data);
-		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.player.idle[dir][frame], x, y);
 	}
-	put_background(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.player.movement[dir][frame], x, y);
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
+	data->s.player.movement[dir][frame], x, y);
 	frame++;
 }
 
 void	player_attack(t_game *data)
 {
-	static int frame;
-	int	dir;
-	int *pos;
-	int x;
-	int y;
+	static int	frame;
+	int			dir;
+	int			x;
+	int			y;
+	int			*pos;
 
 	pos = find_player(&data->carte);
 	y = pos[0] * 96;
@@ -75,28 +74,41 @@ void	player_attack(t_game *data)
 		frame = 0;
 		data->player.status = 0;
 	}
-	put_background(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.player.attack[dir][frame], x, y);
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
+	data->s.player.attack[dir][frame], x, y);
 	frame++;
+	free (pos);
 }
 
 void	put_background(t_game *data)
 {
-	int	close_x;
-	int	close_y;
-
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.env.wooden_floor, data->player.pos.x, data->player.pos.y);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->s.env.wooden_floor, data->player.pos.to_x, data->player.pos.to_y);
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
+	data->s.env.wooden_floor, data->player.pos.x, data->player.pos.y);
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
+	data->s.env.wooden_floor, data->player.pos.to_x, data->player.pos.to_y);
 }
 
-int	find_close_block(int i)
+void	all_background(t_game data)
 {
-	int	nearest_multiple;
+	int	x;
+	int	y;
+	int	i;
+	int	j;
 
-	if (i % 96 <= 48) {
-        nearest_multiple = i - (i % 96);
-    } else {
-        nearest_multiple = i + (96 - (i % 96));
-    }
-	return (nearest_multiple);
+	y = 0;
+	i = 0;
+	while (data.carte.map_matrix[i])
+	{
+		x = 0;
+		j = 0;
+		while (data.carte.map_matrix[i][j])
+		{
+			mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, \
+				data.s.env.wooden_floor, x, y);
+			x += 96;
+			j++;
+		}
+		y += 96;
+		i++;
+	}
 }

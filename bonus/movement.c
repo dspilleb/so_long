@@ -6,87 +6,107 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:14:27 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 00:22:42 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:05:19 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	side_movement(t_game *data, char direction)
+void	right_movement(t_game *data, char direction)
 {
+	int	y;
+	int	x;
 	int	*pos;
 
 	pos = find_player(&data->carte);
-	if (!pos)
-		return ;
-	if (direction == 'D' && pos[1] < data->carte.columns - 1)
+	x = pos[1];
+	y = pos[0];
+	if (direction == 'D' && x < data->carte.columns - 1)
 	{
-		if (can_move(data, data->carte.map_matrix[pos[0]][pos[1] + 1]))
+		if (can_move(data, data->carte.map_matrix[y][x + 1]))
 		{
-			data->player.facing = 1;
-			data->carte.map_matrix[pos[0]][pos[1] + 1] = 'P';
-			data->carte.map_matrix[pos[0]][pos[1]] = '0';
-			data->player.steps++;
+			update_player_data(data, 1, 3);
+			data->carte.map_matrix[y][x + 1] = 'P';
+			data->carte.map_matrix[y][x] = '0';
+			data->player.pos.to_x = (x + 1) * 96;
+			data->player.pos.to_y = y * 96;
 			data->player.pos.x = pos[1] * 96;
 			data->player.pos.y = pos[0] * 96;
-			data->player.pos.to_x = (pos[1] + 1) * 96;
-			data->player.pos.to_y = pos[0] * 96;
-			data->player.status = 3;
-		}
-	}
-	else if (direction == 'Q' && pos[1] > 0)
-	{
-		if (can_move(data, data->carte.map_matrix[pos[0]][pos[1] - 1]))
-		{
-			data->player.facing = 3;
-			data->carte.map_matrix[pos[0]][pos[1] - 1] = 'P';
-			data->carte.map_matrix[pos[0]][pos[1]] = '0';
-			data->player.steps++;
-			data->player.pos.x = pos[1] * 96;
-			data->player.pos.y = pos[0] * 96;
-			data->player.pos.to_x = (pos[1] - 1) * 96;
-			data->player.pos.to_y = pos[0] * 96;
-			data->player.status = 3;
 		}
 	}
 	free (pos);
 }
 
-void	vertical_movement(t_game *data, char direction)
+void	left_movement(t_game *data, char direction)
 {
+	int	y;
+	int	x;
 	int	*pos;
 
 	pos = find_player(&data->carte);
-	if (!pos)
-		return ;
-	if (direction == 'Z' && pos[0] > 0)
+	x = pos[1];
+	y = pos[0];
+	if (direction == 'Q' && x > 0)
 	{
-		if (can_move(data, data->carte.map_matrix[pos[0] - 1][pos[1]]))
+		if (can_move(data, data->carte.map_matrix[y][x - 1]))
 		{
-			data->player.facing = 0;
-			data->carte.map_matrix[pos[0] - 1][pos[1]] = 'P';
-			data->carte.map_matrix[pos[0]][pos[1]] = '0';
-			data->player.steps++;
+			update_player_data(data, 3, 3);
+			data->carte.map_matrix[y][x - 1] = 'P';
+			data->carte.map_matrix[y][x] = '0';
+			data->player.pos.to_x = (x - 1) * 96;
+			data->player.pos.to_y = y * 96;
 			data->player.pos.x = pos[1] * 96;
 			data->player.pos.y = pos[0] * 96;
-			data->player.pos.to_x = pos[1] * 96;
-			data->player.pos.to_y = (pos[0] - 1) * 96;
-			data->player.status = 3;
 		}
 	}
-	else if (direction == 'S' && pos[0] < data->carte.lines - 1)
+	free (pos);
+}
+
+void	up_movement(t_game *data, char direction)
+{
+	int	y;
+	int	x;
+	int	*pos;
+
+	pos = find_player(&data->carte);
+	x = pos[1];
+	y = pos[0];
+	if (direction == 'Z' && y > 0)
 	{
-		if (can_move(data, data->carte.map_matrix[pos[0] + 1][pos[1]]))
+		if (can_move(data, data->carte.map_matrix[y - 1][x]))
 		{
-			data->player.facing = 2;
-			data->carte.map_matrix[pos[0] + 1][pos[1]] = 'P';
-			data->carte.map_matrix[pos[0]][pos[1]] = '0';
-			data->player.steps++;
+			update_player_data(data, 0, 3);
+			data->carte.map_matrix[y - 1][x] = 'P';
+			data->carte.map_matrix[y][x] = '0';
+			data->player.pos.to_x = x * 96;
+			data->player.pos.to_y = (y - 1) * 96;
 			data->player.pos.x = pos[1] * 96;
 			data->player.pos.y = pos[0] * 96;
-			data->player.pos.to_x = pos[1] * 96;
-			data->player.pos.to_y = (pos[0] + 1) * 96;
-			data->player.status = 3;
+		}
+	}
+	free (pos);
+}
+
+void	down_movement(t_game *data, char direction)
+{
+	int	y;
+	int	x;
+	int	*pos;
+
+	pos = find_player(&data->carte);
+	x = pos[1];
+	y = pos[0];
+	if (direction == 'S' && y < data->carte.lines - 1)
+	{
+		if (can_move(data, data->carte.map_matrix[y + 1][x]))
+		{
+			update_player_data(data, 2, 3);
+			data->carte.map_matrix[y + 1][x] = 'P';
+			data->carte.map_matrix[y][x] = '0';
+			data->player.pos.to_x = x * 96;
+			data->player.pos.to_y = (y + 1) * 96;
+			data->player.pos.x = pos[1] * 96;
+			data->player.pos.y = pos[0] * 96;
 		}
 	}
 	free (pos);
@@ -108,6 +128,9 @@ int	can_move(t_game *data, char letter)
 		return (0);
 	}
 	if (letter == 'E' && data->player.collected == data->carte.collectibles)
-		data->player.status = 1;
+	{
+		data->player.over = 1;
+		fill_screen(*data);
+	}
 	return (1);
 }

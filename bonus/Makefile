@@ -2,7 +2,7 @@ NAME = so_long.out
 
 SRC = $(MAIN_SRC) $(SRC_GNL) $(SRC_MAP) $(SRC_GAME)
 
-MAIN_SRC = ./*.c
+MAIN_SRC = ./*.c ./Visual/* ./Utils/*
 
 LIBFT_A = libft.a
 LIBF_DIR = ../libft/
@@ -11,7 +11,7 @@ LIBFT  = $(addprefix $(LIBF_DIR), $(LIBFT_A))
 GNL = get_next_line.c get_next_line_utils.c
 SRC_GNL = $(addprefix ../GNL/, $(GNL))
 
-MAP = parsing.c map_validity.c sprites.c
+MAP = parsing.c map_validity.c
 SRC_MAP = $(addprefix ./map_parsing/, $(MAP))
 
 GAME =	movement.c

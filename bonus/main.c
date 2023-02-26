@@ -6,44 +6,11 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 14:54:21 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:50:03 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	*find_player(t_map_data *map)
-{
-	int	*position;
-	int	i;
-	int	j;
-
-	position = malloc(sizeof(int) * 2);
-	if (!position)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (map->map_matrix[i])
-	{
-		j = 0;
-		while (map->map_matrix[i][j] && map->map_matrix[i][j] != 'P')
-			j++;
-		if (map->map_matrix[i][j])
-			break ;
-		i++;
-	}
-	position[0] = i;
-	position[1] = j;
-	return (position);
-}
-
-int	end_t_game(t_game *data)
-{
-	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
-	printf("ESC DESTROYED\n");
-	exit(1);
-	return (0);
-}
 
 int	actions(int keycode, t_game *data)
 {
@@ -53,21 +20,20 @@ int	actions(int keycode, t_game *data)
 	if (data->player.status == 0)
 	{
 		if (keycode == Z)
-			vertical_movement(data, 'Z');
+			up_movement(data, 'Z');
 		else if (keycode == Q)
-			side_movement(data, 'Q');
+			left_movement(data, 'Q');
 		else if (keycode == S)
-			vertical_movement(data, 'S');
+			down_movement(data, 'S');
 		else if (keycode == D)
-			side_movement(data, 'D');
+			right_movement(data, 'D');
 		else if (keycode == F)
 			data->player.status = 2;
 		else if (keycode == ESC)
 			end_t_game(data);
 	}
-	if (data->player.status == 1)
+	if (data->player.over == 1)
 		end_t_game(data);
-	fill_screen(*data);
 	movement -= data->player.steps;
 	if (movement)
 		printf("Steps : %d\n", data->player.steps);
@@ -80,30 +46,23 @@ int	count(t_game *data)
 
 	if (count % 2000 == 0 && data->player.status == 0)
 	{
-		put_background(data);
 		count = 0;
+		put_background(data);
 		player_idle(data);
 	}
 	else if (count % 1000 == 0 && data->player.status == 2)
 	{
-		put_background(data);
 		count = 0;
+		put_background(data);
 		player_attack(data);
 	}
 	else if (count % 700 == 0 && data->player.status == 3)
 	{
-		put_background(data);
 		count = 0;
+		put_background(data);
 		player_movement(data);
 	}
 	count++;
-}
-void	init_player(t_p_data *player)
-{
-	player->collected = 0;
-	player->steps = 0;
-	player->status = 0;
-	player->facing = 2;
 }
 
 void	init_game(t_game *data, t_data *img)
@@ -111,7 +70,7 @@ void	init_game(t_game *data, t_data *img)
 	data->res_x = data->carte.columns * 96;
 	data->res_y = data->carte.lines * 96;
 	data->mlx_ptr = mlx_init();
-	data->mlx_win = mlx_new_window(data->mlx_ptr, data->res_x , \
+	data->mlx_win = mlx_new_window(data->mlx_ptr, data->res_x, \
 	data->res_y, "./so_long");
 	mlx_do_key_autorepeatoff(data->mlx_ptr);
 	img->img = mlx_new_image (data->mlx_ptr, data->res_x, data->res_y);

@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 14:53:36 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:57:15 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@
 
 typedef struct position
 {
+	int	real_x;
+	int	real_y;
 	int	x;
-	int y;
+	int	y;
 	int	to_x;
 	int	to_y;
 }t_pos;
@@ -42,7 +44,7 @@ typedef struct env_sprites
 	void	*wooden_floor;
 	void	*exit_opened;
 	void	*exit_closed;
-} t_env;
+}	t_env;
 
 typedef struct player_sprites
 {
@@ -50,11 +52,11 @@ typedef struct player_sprites
 	void	***movement;
 	void	**death;
 	void	***attack;
-} t_player_sprites;
+}	t_player_sprites;
 typedef struct sprites
 {
-	t_env	env;
-	t_player_sprites player;
+	t_env				env;
+	t_player_sprites	player;
 }	t_sprites;
 typedef struct img
 {
@@ -78,11 +80,12 @@ typedef struct map
 
 typedef struct player
 {
-	int	collected;
-	int	steps;
-	int	status;
-	int	facing;
-	t_pos pos;
+	int		collected;
+	int		steps;
+	int		status;
+	int		over;
+	int		facing;
+	t_pos	pos;
 }	t_p_data;
 
 typedef struct game
@@ -96,11 +99,15 @@ typedef struct game
 	t_sprites	s;
 }	t_game;
 
+void		update_player_data(t_game *data, int facing, int status);
+void		init_player(t_p_data *player);
+char		*ft_join(char *s1, char *s2);
+char		*create_path(char *path, char *name, int j, int i);
 void		all_background(t_game data);
-int			find_close_block(int i);
 void		put_background(t_game *data);
 void		player_attack(t_game *data);
-void		***init_player_sprites(t_game *data, void ***arr, int size, char *path, char *name);
+void		***init_player_sprites(t_game *data, void \
+			***arr, char *path, char *name);
 void		init_env_sprites(t_game *data);
 int			end_t_game(t_game *data);
 void		*sprite(t_game data, char letter);
@@ -114,8 +121,10 @@ void		free_matrix(char **str);
 char		*line_extractor(char *line, int len);
 char		**ft_map_matrix(char *map, t_map_data data);
 int			can_move(t_game *data, char letter);
-void		side_movement(t_game *data, char direction);
-void		vertical_movement(t_game *data, char direction);
+void		right_movement(t_game *data, char direction);
+void		left_movement(t_game *data, char direction);
+void		down_movement(t_game *data, char direction);
+void		up_movement(t_game *data, char direction);
 void		fill_screen(t_game data);
 void		init_t_sprites(t_game *data);
 void		player_idle(t_game *data);
