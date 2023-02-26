@@ -20,7 +20,7 @@ SRC_GAME = $(addprefix ./, $(GAME))
 OBJ = *.o
 
 FLAGS =
-INCLUDE = -lbsd -lmlx -lX11 -lXext -lXrender
+INCLUDE = -lbsd -lmlx -lX11 -lXext -lXrender -lm
 
 NONE='\033[0m'
 GREEN='\033[32m'

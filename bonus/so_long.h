@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/24 14:52:01 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/26 14:53:36 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "../GNL/get_next_line.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <string.h>
 # include <mlx.h>
@@ -25,7 +26,15 @@
 # define D 100
 # define S 115
 # define ESC 65307
+# define F 102
 
+typedef struct position
+{
+	int	x;
+	int y;
+	int	to_x;
+	int	to_y;
+}t_pos;
 typedef struct env_sprites
 {
 	void	*collectible;
@@ -41,7 +50,6 @@ typedef struct player_sprites
 	void	***movement;
 	void	**death;
 	void	***attack;
-
 } t_player_sprites;
 typedef struct sprites
 {
@@ -73,7 +81,8 @@ typedef struct player
 	int	collected;
 	int	steps;
 	int	status;
-	int facing;
+	int	facing;
+	t_pos pos;
 }	t_p_data;
 
 typedef struct game
@@ -87,7 +96,11 @@ typedef struct game
 	t_sprites	s;
 }	t_game;
 
-void init_player_sprites(t_game *data, void **arr, int size, char *path);
+void		all_background(t_game data);
+int			find_close_block(int i);
+void		put_background(t_game *data);
+void		player_attack(t_game *data);
+void		***init_player_sprites(t_game *data, void ***arr, int size, char *path, char *name);
 void		init_env_sprites(t_game *data);
 int			end_t_game(t_game *data);
 void		*sprite(t_game data, char letter);
@@ -105,5 +118,7 @@ void		side_movement(t_game *data, char direction);
 void		vertical_movement(t_game *data, char direction);
 void		fill_screen(t_game data);
 void		init_t_sprites(t_game *data);
+void		player_idle(t_game *data);
+void		player_movement(t_game *data);
 
 #endif
