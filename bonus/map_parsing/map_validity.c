@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:50:50 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/17 12:44:20 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:52:49 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	add_t_map_data(t_map_data *data, char *line, int count)
 			data->collectibles++;
 		else if (line[i] == 'P')
 			data->character++;
+		else if (line[i] == 'M')
+			data->monsters++;
 		else if (line[i] != '1' && line[i] != '0')
 			data->validity = 0;
 		i++;
@@ -70,6 +72,7 @@ void	init_struct(t_map_data *data)
 	data->collectibles = 0;
 	data->character = 0;
 	data->validity = 0;
+	data->monsters = 0;
 }
 
 void	map_len(t_map_data *data, char *map)

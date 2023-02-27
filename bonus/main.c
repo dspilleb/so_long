@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 16:50:03 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 00:31:55 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	actions(int keycode, t_game *data)
 	int		movement;
 
 	movement = data->player.steps;
-	if (data->player.status == 0)
+	if (data->player.status == 0 && !data->player.over)
 	{
 		if (keycode == Z)
 			up_movement(data, 'Z');
@@ -44,25 +44,37 @@ int	count(t_game *data)
 {
 	static int	count;
 
-	if (count % 2000 == 0 && data->player.status == 0)
+	if (!data->player.over)
 	{
-		count = 0;
-		put_background(data);
-		player_idle(data);
+		if (count % 700 == 0)
+			monster_idle(data);
+		if (count % 1000 == 0 && data->player.status == 2)
+		{
+			count = 0;
+			put_background(data);
+			player_attack(data);
+			ennemy_death(data);
+		}
+		else if (count % 2000 && data->player.status == 1)
+		{
+			count = 0;
+			put_background(data);
+			player_death(data);
+		}
+		else if (count % 700 == 0 && data->player.status == 3)
+		{
+			count = 0;
+			put_background(data);
+			player_movement(data);
+		}
+		else if (count % 2000 == 0 && data->player.status == 0)
+		{
+			count = 0;
+			put_background(data);
+			player_idle(data);
+		}
+		count++;
 	}
-	else if (count % 1000 == 0 && data->player.status == 2)
-	{
-		count = 0;
-		put_background(data);
-		player_attack(data);
-	}
-	else if (count % 700 == 0 && data->player.status == 3)
-	{
-		count = 0;
-		put_background(data);
-		player_movement(data);
-	}
-	count++;
 }
 
 void	init_game(t_game *data, t_data *img)
@@ -92,7 +104,7 @@ int	main(void)
 		exit (1);
 	}
 	init_game(&data, &img);
-	init_player(&data.player);
+	init_player(&data, &data.player);
 	init_t_sprites(&data);
 	all_background(data);
 	fill_screen(data);

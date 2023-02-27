@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 16:57:15 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 00:23:12 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 typedef struct position
 {
-	int	real_x;
-	int	real_y;
+	int	target_x;
+	int	target_y;
 	int	x;
 	int	y;
 	int	to_x;
@@ -41,6 +41,8 @@ typedef struct env_sprites
 {
 	void	*collectible;
 	void	*wall;
+	void	*wall2;
+	void	*wall3;
 	void	*wooden_floor;
 	void	*exit_opened;
 	void	*exit_closed;
@@ -50,13 +52,21 @@ typedef struct player_sprites
 {
 	void	***idle;
 	void	***movement;
-	void	**death;
+	void	*d0;
+	void	*d1;
 	void	***attack;
 }	t_player_sprites;
+
+typedef struct ennemy_sprites
+{
+	void	**idle;
+	void	**death;
+}	t_ennemy_sprites;
 typedef struct sprites
 {
 	t_env				env;
 	t_player_sprites	player;
+	t_ennemy_sprites	ennemy;
 }	t_sprites;
 typedef struct img
 {
@@ -76,6 +86,7 @@ typedef struct map
 	int		validity;
 	int		lines;
 	int		columns;
+	int		monsters;
 }	t_map_data;
 
 typedef struct player
@@ -99,8 +110,19 @@ typedef struct game
 	t_sprites	s;
 }	t_game;
 
+void		ennemy_death(t_game *data);
+void		update_target(t_game *data, int x, int y);
+int			*check_for_ennemy(t_game *data, int x1, int y1);
+void		face_ennemy(t_game *data, int x, int y);
+void		player_death(t_game *data);
+void		free_monster(t_game data, int **tab);
+void		**init_mob_sprites(t_game *data, void **arr, \
+			char *path, char *name);
+int			**find_monsters(t_game *data);
+void		monster_idle(t_game *data);
+void		monster_idle2(t_game *data, int *pos, int frame);
 void		update_player_data(t_game *data, int facing, int status);
-void		init_player(t_p_data *player);
+void		init_player(t_game *data, t_p_data *player);
 char		*ft_join(char *s1, char *s2);
 char		*create_path(char *path, char *name, int j, int i);
 void		all_background(t_game data);

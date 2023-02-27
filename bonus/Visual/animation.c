@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:03:08 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 17:04:28 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 00:03:54 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	player_movement(t_game *data)
 	{
 		frame = 0;
 		data->player.status = 0;
+		face_ennemy(data, x, y);
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
 	data->s.player.movement[dir][frame], x, y);
@@ -69,13 +70,15 @@ void	player_attack(t_game *data)
 	y = pos[0] * 96;
 	x = pos[1] * 96;
 	dir = data->player.facing;
-	if (frame == 4)
+	if (frame >= 4)
 	{
 		frame = 0;
 		data->player.status = 0;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
 	data->s.player.attack[dir][frame], x, y);
+	update_target(data, x / 96, y / 96);
+	ennemy_death(data);
 	frame++;
 	free (pos);
 }

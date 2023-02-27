@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 16:57:01 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:08:11 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,21 @@ int	*find_player(t_map_data *map)
 	return (position);
 }
 
-void	init_player(t_p_data *player)
+void	init_player(t_game *data, t_p_data *player)
 {
+	int	*pos;
+
+	pos = find_player(&data->carte);
 	player->collected = 0;
 	player->steps = 0;
 	player->status = 0;
 	player->facing = 2;
 	player->over = 0;
+	player->pos.x = pos[1] * 96;
+	player->pos.y = pos[0] * 96;
+	player->pos.to_x = pos[1] * 96;
+	player->pos.to_y = pos[0] * 96;
+	free (pos);
 }
 
 int	end_t_game(t_game *data)

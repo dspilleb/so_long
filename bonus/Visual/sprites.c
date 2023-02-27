@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/26 15:40:31 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:46:15 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	*sprite(t_game data, char letter)
 {
+	static int	count;
+
+	if (count > 11)
+		count = 0;
+	count++;
 	if (letter == 'E')
 	{
 		if (data.player.collected == data.carte.collectibles)
@@ -22,12 +27,16 @@ void	*sprite(t_game data, char letter)
 			return (data.s.env.exit_closed);
 	}
 	else if (letter == '1')
+	{
+		if (count % 5 == 0 && count % 10 != 0)
+			return (data.s.env.wall3);
+		else if (count % 10 == 0)
+			return (data.s.env.wall2);
 		return (data.s.env.wall);
+	}
 	else if (letter == 'C')
 		return (data.s.env.collectible);
-	else
-		return (data.s.env.wooden_floor);
-	return (NULL);
+	return (data.s.env.wooden_floor);
 }
 
 void	init_t_sprites(t_game *data)
@@ -42,6 +51,10 @@ void	init_t_sprites(t_game *data)
 	data->s.player.movement, "./Sprites/PS/Movement/", "M");
 	data->s.player.attack = init_player_sprites(data, data->s.player.attack, \
 	"./Sprites/PS/Attack/", "A");
+	data->s.ennemy.idle = init_mob_sprites \
+	(data, data->s.ennemy.idle, "./Sprites/ES/idle/", "I");
+	data->s.ennemy.death = init_mob_sprites \
+	(data, data->s.ennemy.idle, "./Sprites/ES/Death/", "D");
 }
 
 void	***init_player_sprites(t_game *data, void ***arr, \
@@ -85,30 +98,12 @@ void	init_env_sprites(t_game *data)
 	"./Sprites/opened_door.xpm", &img_width, &img_height);
 	data->s.env.exit_closed = mlx_xpm_file_to_image(data->mlx_ptr, \
 	"./Sprites/closed_door.xpm", &img_width, &img_height);
-}
-
-void	fill_screen(t_game data)
-{
-	int	x;
-	int	y;
-	int	i;
-	int	j;
-
-	y = 0;
-	i = 0;
-	while (data.carte.map_matrix[i])
-	{
-		x = 0;
-		j = 0;
-		while (data.carte.map_matrix[i][j])
-		{
-			if (data.carte.map_matrix[i][j] != 'P')
-				mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, \
-				sprite(data, data.carte.map_matrix[i][j]), x, y);
-			x += 96;
-			j++;
-		}
-		y += 96;
-		i++;
-	}
+	data->s.env.wall2 = mlx_xpm_file_to_image(data->mlx_ptr, \
+	"./Sprites/wall2.xpm", &img_width, &img_height);
+	data->s.env.wall3 = mlx_xpm_file_to_image(data->mlx_ptr, \
+	"./Sprites/wall3.xpm", &img_width, &img_height);
+	data->s.player.d0 = mlx_xpm_file_to_image(data->mlx_ptr, \
+	"./Sprites/PS/Dead/D0.xpm", &img_width, &img_height);
+	data->s.player.d1 = mlx_xpm_file_to_image(data->mlx_ptr, \
+	"./Sprites/PS/Dead/D1.xpm", &img_width, &img_height);
 }
