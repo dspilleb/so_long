@@ -1,4 +1,3 @@
-# so_long
 <h1 align="center">
 	📖 So Long
 </h1>
