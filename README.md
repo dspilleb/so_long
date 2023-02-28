@@ -12,3 +12,12 @@
 ## 💡 About the project
 
 > This is a 42 School's project. The project consists in creating a little 2D game with the MiniLibX, the school's graphic library.
+
+------------
+
+| HOW TO play  |   |
+| ------------ | ------------ |
+|  Z | Move up|
+|  Q | Move left|
+|  S | Move down|
+|  D | Move right|
