@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:43:10 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/27 19:51:02 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:44:32 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,17 @@ void	fill_screen(t_game data)
 		y += 96;
 		i++;
 	}
+}
+
+void	steps_count(t_game *data)
+{
+	char	*tmp;
+	char	*num;
+
+	tmp = NULL;
+	num = ft_itoa(data->player.steps);	
+	tmp = ft_join(tmp, "Steps :");
+	tmp = ft_join(tmp, num);
+	mlx_string_put(data->mlx_ptr, data->mlx_win, 50, 50, 0x00FF0000, tmp);
+	free(num);
 }

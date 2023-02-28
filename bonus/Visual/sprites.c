@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 17:27:53 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:32:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*sprite(t_game data, char letter)
 		count = 0;
 	count++;
 	if (letter == 'E')
-			return (data.s.env.exit_closed);
+		return (data.s.env.exit_closed);
 	else if (letter == '1')
 	{
 		if (count % 5 == 0 && count % 10 != 0)

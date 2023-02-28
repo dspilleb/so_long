@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 17:24:32 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:14:44 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,24 @@
 # include <math.h>
 # include <stdio.h>
 # include <string.h>
+//change path if on Mac_OS
 # include <mlx.h>
-# include <stdbool.h>
 
+//linux
 # define Z 122
 # define Q 113
 # define D 100
 # define S 115
 # define ESC 65307
 # define F 102
+
+//Mac_OS
+// # define Z 13
+// # define Q 0
+// # define D 2
+// # define S 1
+// # define ESC 53
+// # define F 3
 
 typedef struct position
 {
@@ -111,6 +120,7 @@ typedef struct game
 	t_sprites	s;
 }	t_game;
 
+void		steps_count(t_game *data);
 void		ennemy_death(t_game *data);
 void		update_target(t_game *data, int x, int y);
 int			*check_for_ennemy(t_game *data, int x1, int y1);
