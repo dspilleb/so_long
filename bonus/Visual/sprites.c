@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/27 23:46:15 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:27:53 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@ void	*sprite(t_game data, char letter)
 		count = 0;
 	count++;
 	if (letter == 'E')
-	{
-		if (data.player.collected == data.carte.collectibles)
-			return (data.s.env.exit_opened);
-		else
 			return (data.s.env.exit_closed);
-	}
 	else if (letter == '1')
 	{
 		if (count % 5 == 0 && count % 10 != 0)
@@ -36,6 +31,8 @@ void	*sprite(t_game data, char letter)
 	}
 	else if (letter == 'C')
 		return (data.s.env.collectible);
+	if (count % 10 == 0)
+		return (data.s.env.ground2);
 	return (data.s.env.wooden_floor);
 }
 
@@ -55,6 +52,8 @@ void	init_t_sprites(t_game *data)
 	(data, data->s.ennemy.idle, "./Sprites/ES/idle/", "I");
 	data->s.ennemy.death = init_mob_sprites \
 	(data, data->s.ennemy.idle, "./Sprites/ES/Death/", "D");
+	data->s.env.ground2 = mlx_xpm_file_to_image(data->mlx_ptr, \
+	"./Sprites/ground2.xpm", &img_width, &img_height);
 }
 
 void	***init_player_sprites(t_game *data, void ***arr, \

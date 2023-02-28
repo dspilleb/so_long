@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 00:23:12 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:24:32 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct env_sprites
 	void	*wooden_floor;
 	void	*exit_opened;
 	void	*exit_closed;
+	void	*ground2;
 }	t_env;
 
 typedef struct player_sprites

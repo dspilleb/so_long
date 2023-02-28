@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 00:31:55 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:38:18 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ int	count(t_game *data)
 
 	if (!data->player.over)
 	{
-		if (count % 700 == 0)
+		if (count % 700 == 0 && data->player.status != 2)
 			monster_idle(data);
 		if (count % 1000 == 0 && data->player.status == 2)
 		{
 			count = 0;
 			put_background(data);
 			player_attack(data);
-			ennemy_death(data);
 		}
 		else if (count % 2000 && data->player.status == 1)
 		{
