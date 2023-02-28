@@ -13,7 +13,8 @@
 
 | HOW TO play  |   |
 | ------------ | ------------ |
-|  Z | Move up|
-|  Q | Move left|
-|  S | Move down|
-|  D | Move right|
+|  Z | Move up ⬆️|
+|  Q | Move left ⬅️|
+|  S | Move down ⬇️|
+|  D | Move right ➡️|
+|  F | Use your sword ⚔️|
