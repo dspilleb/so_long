@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 18:43:29 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/03/01 09:29:19 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ int	actions(int keycode, t_game *data)
 		end_t_game(data);
 	movement -= data->player.steps;
 	if (movement)
-	{
-		steps_count(data);
 		printf("Steps : %d\n", data->player.steps);
-	}
 	return (0);
 }
 

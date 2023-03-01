@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:15:25 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 17:37:14 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/03/01 09:31:59 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,11 @@ void	face_ennemy(t_game *data, int x1, int y1)
 		return ;
 }
 
-
 void	ennemy_death(t_game *data)
 {
 	static int	frame;
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 
 	x = data->player.pos.target_x;
 	y = data->player.pos.target_y;
@@ -79,6 +78,5 @@ void	ennemy_death(t_game *data)
 	data->s.env.wooden_floor, x * 96, y * 96);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
 	data->s.ennemy.death[frame], x * 96, y * 96);
-	printf("coucou%d\n", frame);
 	frame++;
 }
