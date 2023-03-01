@@ -6,6 +6,7 @@
 
 > This is a 42 School's project. The project consists in creating a little 2D game with the MiniLibX, the school's graphic library.
 > I decided to use some classic rpg sprites which kinda gives "The legend of Zelda" vibes.
+>⚠️ Still in work ⚠️
 
 ## ⚔️ The game
 >In order to complete the game, players must avoid all enemies and acquire all of the collectibles on the map before taking the exit. ennemies can be vanquished by using your sword.
