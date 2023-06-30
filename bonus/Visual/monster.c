@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 09:31:53 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 00:53:09 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:31:08 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	monster_idle(t_game *data)
 	int			i;
 
 	i = -1;
-	pos = find_monsters(data);
+	pos = find_monsters(data, 0);
 	if (pos)
 	{
 		while (++i < data->carte.monsters)
@@ -47,19 +47,17 @@ void	monster_idle2(t_game *data, int *pos, int frame)
 	frame++;
 }
 
-int	**find_monsters(t_game *data)
+int	**find_monsters(t_game *data, int count)
 {
 	int	**position;
 	int	i;
 	int	j;
-	int	count;
 
 	if (data->carte.monsters <= 0)
 		return (NULL);
 	position = malloc(sizeof(int *) * (data->carte.monsters));
 	if (!position)
 		return (NULL);
-	count = 0;
 	i = -1;
 	while (data->carte.map_matrix[++i])
 	{

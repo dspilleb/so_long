@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:03:08 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 00:03:54 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:58:55 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	player_idle(t_game *data)
 	int			*pos;
 
 	pos = find_player(&data->carte);
+	if (!pos)
+		return ;
 	y = pos[0] * 96;
 	x = pos[1] * 96;
 	dir = data->player.facing;

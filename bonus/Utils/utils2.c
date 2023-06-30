@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:43:10 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/03/01 09:31:32 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/17 10:44:23 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char *path, char *name)
 	char	*tmp_path;
 
 	i = -1;
-	arr = malloc(sizeof(void *) * (5));
+	arr = malloc(sizeof(void *) * (4));
 	while (++i <= 3)
 	{
 		tmp_path = NULL;

@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:15:25 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/03/01 09:31:59 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/03/01 09:33:07 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	face_ennemy(t_game *data, int x1, int y1)
 		data->player.facing = 2;
 	else if (data->carte.map_matrix[y][x - 1] == 'M')
 		data->player.facing = 3;
-	else
-		return ;
 }
 
 void	ennemy_death(t_game *data)

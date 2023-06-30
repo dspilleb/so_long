@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/28 19:14:44 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:19:28 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void		player_death(t_game *data);
 void		free_monster(t_game data, int **tab);
 void		**init_mob_sprites(t_game *data, void **arr, \
 			char *path, char *name);
-int			**find_monsters(t_game *data);
+int			**find_monsters(t_game *data, int count);
 void		monster_idle(t_game *data);
 void		monster_idle2(t_game *data, int *pos, int frame);
 void		update_player_data(t_game *data, int facing, int status);
@@ -162,5 +162,7 @@ void		fill_screen(t_game data);
 void		init_t_sprites(t_game *data);
 void		player_idle(t_game *data);
 void		player_movement(t_game *data);
-
+void		free_env_sprites(t_game *data);
+void		free_mob_sprites(t_game *data);
+void		free_player_sprites(t_game *data);
 #endif

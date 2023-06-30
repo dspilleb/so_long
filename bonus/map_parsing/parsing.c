@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:52:40 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/27 19:02:18 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:31:44 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_matrix(char **str)
 	int	i;
 
 	i = -1;
+	if (!str)
+		return ;
 	while (str[++i])
 		free (str[i]);
 	free(str);
@@ -58,7 +60,8 @@ char	**ft_map_matrix(char *map, t_map_data data)
 	{
 		line = get_next_line(fd);
 		map_matrix[i] = line_extractor(line, data.columns);
-		free (line);
+		if (line)
+			free (line);
 		if (!map_matrix[i])
 		{
 			free_matrix(map_matrix);

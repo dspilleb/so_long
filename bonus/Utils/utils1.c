@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/27 20:08:11 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:20:15 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ void	init_player(t_game *data, t_p_data *player)
 int	end_t_game(t_game *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
-	printf("ESC DESTROYED\n");
-	exit(1);
+	free_env_sprites(data);
+	free_mob_sprites(data);
+	free_player_sprites(data);
 	return (0);
 }
 

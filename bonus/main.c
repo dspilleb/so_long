@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/03/01 09:29:19 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:22:33 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ int	actions(int keycode, t_game *data)
 			right_movement(data, 'D');
 		else if (keycode == F)
 			data->player.status = 2;
-		else if (keycode == ESC)
-			end_t_game(data);
 	}
-	if (data->player.over == 1)
+	if (keycode == ESC || data->player.over == 1)
 		end_t_game(data);
-	movement -= data->player.steps;
-	if (movement)
+	if (movement != data->player.steps)
 		printf("Steps : %d\n", data->player.steps);
 	return (0);
 }
@@ -48,32 +45,24 @@ int	count(t_game *data)
 	{
 		if (count % 700 == 0 && data->player.status != 2)
 			monster_idle(data);
+		if ((count % 1000 == 0 && data->player.status == 2) || \
+		(count % 2000 && data->player.status == 1) || \
+		(count % 700 == 0 && data->player.status == 3) \
+		|| count % 2000 == 0 && data->player.status == 0)
+		{
+			count = 0;
+			put_background(data);
+		}
 		if (count % 1000 == 0 && data->player.status == 2)
-		{
-			count = 0;
-			put_background(data);
 			player_attack(data);
-		}
 		else if (count % 2000 && data->player.status == 1)
-		{
-			count = 0;
-			put_background(data);
 			player_death(data);
-		}
 		else if (count % 700 == 0 && data->player.status == 3)
-		{
-			count = 0;
-			put_background(data);
 			player_movement(data);
-		}
 		else if (count % 2000 == 0 && data->player.status == 0)
-		{
-			count = 0;
-			put_background(data);
 			player_idle(data);
-		}
-		count++;
 	}
+	count++;
 }
 
 void	init_game(t_game *data, t_data *img)
