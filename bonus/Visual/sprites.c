@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/17 10:38:55 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:36:29 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*sprite(t_game data, char letter)
 	if (count > 11)
 		count = 0;
 	count++;
-	if (letter == 'E')
+	if (letter == 'E' && !(data.player.collected == data.carte.collectibles))
 		return (data.s.env.exit_closed);
 	else if (letter == '1')
 	{

@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:19:13 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 13:22:04 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:30:28 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,20 @@ void	free_player_sprites(t_game *data)
 	}
 	free(data->s.player.d0);
 	free(data->s.player.d1);
+}
+
+void	open_exit(t_game *data)
+{
+	int	*pos;
+	int	x;
+	int	y;
+
+	pos = find_letter(&data->carte, 'E');
+	if (!pos)
+		return ;
+	x = pos[1] * 96;
+	y = pos[0] * 96;
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
+	data->s.env.exit_opened, x, y);
+	free (pos);
 }

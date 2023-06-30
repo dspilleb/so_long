@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 13:19:28 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:29:06 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void		***init_player_sprites(t_game *data, void \
 void		init_env_sprites(t_game *data);
 int			end_t_game(t_game *data);
 void		*sprite(t_game data, char letter);
-int			*find_player(t_map_data *map);
+int			*find_letter(t_map_data *map, char letter);
 void		check_walls(char *line, int count, t_map_data *data);
 void		add_t_map_data(t_map_data *data, char *line, int count);
 void		init_struct(t_map_data *data);
@@ -165,4 +165,5 @@ void		player_movement(t_game *data);
 void		free_env_sprites(t_game *data);
 void		free_mob_sprites(t_game *data);
 void		free_player_sprites(t_game *data);
+void		open_exit(t_game *data);
 #endif

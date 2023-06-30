@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 11:22:33 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:08:02 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,26 @@ int	count(t_game *data)
 {
 	static int	count;
 
-	if (!data->player.over)
+	if (count % 700 == 0 && data->player.status != 2)
+		monster_idle(data);
+	if ((count % 1000 == 0 && data->player.status == 2) || \
+	(count % 2000 && data->player.status == 1) || \
+	(count % 700 == 0 && data->player.status == 3) \
+	|| count % 2000 == 0 && data->player.status == 0)
 	{
-		if (count % 700 == 0 && data->player.status != 2)
-			monster_idle(data);
-		if ((count % 1000 == 0 && data->player.status == 2) || \
-		(count % 2000 && data->player.status == 1) || \
-		(count % 700 == 0 && data->player.status == 3) \
-		|| count % 2000 == 0 && data->player.status == 0)
-		{
-			count = 0;
-			put_background(data);
-		}
-		if (count % 1000 == 0 && data->player.status == 2)
+		count = 0;
+		put_background(data);
+		if (data->player.status == 2)
 			player_attack(data);
-		else if (count % 2000 && data->player.status == 1)
+		else if (data->player.status == 1)
 			player_death(data);
-		else if (count % 700 == 0 && data->player.status == 3)
+		else if (data->player.status == 3)
 			player_movement(data);
-		else if (count % 2000 == 0 && data->player.status == 0)
+		else if (data->player.status == 0)
 			player_idle(data);
 	}
 	count++;
+	return (0);
 }
 
 void	init_game(t_game *data, t_data *img)
@@ -75,7 +73,7 @@ void	init_game(t_game *data, t_data *img)
 	mlx_do_key_autorepeatoff(data->mlx_ptr);
 	img->img = mlx_new_image (data->mlx_ptr, data->res_x, data->res_y);
 	if (data->mlx_win == NULL || data->mlx_ptr == NULL)
-		end_t_game(data);
+		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 }
 
 int	main(void)
@@ -84,13 +82,12 @@ int	main(void)
 	t_data	img;
 
 	data.carte = check_map_validity("./maps/map.ber");
-	if (data.carte.validity)
-		data.carte.map_matrix = ft_map_matrix("./maps/map.ber", data.carte);
-	else
+	if (!data.carte.validity)
 	{
 		printf("la carte n'est pas valide.\n");
-		exit (1);
+		return (0);
 	}
+	data.carte.map_matrix = ft_map_matrix("./maps/map.ber", data.carte);
 	init_game(&data, &img);
 	init_player(&data, &data.player);
 	init_t_sprites(&data);

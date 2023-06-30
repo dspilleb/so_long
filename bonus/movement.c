@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:14:27 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/27 19:59:31 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:29:27 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	right_movement(t_game *data, char direction)
 	int	x;
 	int	*pos;
 
-	pos = find_player(&data->carte);
+	pos = find_letter(&data->carte, 'P');
+	if (!pos)
+		return ;
 	x = pos[1];
 	y = pos[0];
 	if (direction == 'D' && x < data->carte.columns - 1)
@@ -43,7 +45,9 @@ void	left_movement(t_game *data, char direction)
 	int	x;
 	int	*pos;
 
-	pos = find_player(&data->carte);
+	pos = find_letter(&data->carte, 'P');
+	if (!pos)
+		return ;
 	x = pos[1];
 	y = pos[0];
 	if (direction == 'Q' && x > 0)
@@ -68,7 +72,9 @@ void	up_movement(t_game *data, char direction)
 	int	x;
 	int	*pos;
 
-	pos = find_player(&data->carte);
+	pos = find_letter(&data->carte, 'P');
+	if (!pos)
+		return ;
 	x = pos[1];
 	y = pos[0];
 	if (direction == 'Z' && y > 0)
@@ -93,7 +99,9 @@ void	down_movement(t_game *data, char direction)
 	int	x;
 	int	*pos;
 
-	pos = find_player(&data->carte);
+	pos = find_letter(&data->carte, 'P');
+	if (!pos)
+		return ;
 	x = pos[1];
 	y = pos[0];
 	if (direction == 'S' && y < data->carte.lines - 1)
@@ -117,7 +125,11 @@ int	can_move(t_game *data, char letter)
 	if (letter == '1')
 		return (0);
 	else if (letter == 'C')
+	{
 		data->player.collected++;
+		if (data->player.collected == data->carte.collectibles)
+			open_exit(data);
+	}
 	else if (letter == 'E' && data->player.collected \
 	!= data->carte.collectibles)
 	{
@@ -126,10 +138,7 @@ int	can_move(t_game *data, char letter)
 	}
 	else if (letter == 'E' && data->player.collected \
 	== data->carte.collectibles)
-	{
 		data->player.over = 1;
-		fill_screen(*data);
-	}
 	else if (letter == 'M')
 	{
 		data->player.status = 1;

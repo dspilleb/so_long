@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 13:20:15 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:22:02 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_join(char *s1, char *s2)
 	return (str);
 }
 
-int	*find_player(t_map_data *map)
+int	*find_letter(t_map_data *map, char letter)
 {
 	int	*position;
 	int	i;
@@ -54,7 +54,7 @@ int	*find_player(t_map_data *map)
 	while (map->map_matrix[i])
 	{
 		j = 0;
-		while (map->map_matrix[i][j] && map->map_matrix[i][j] != 'P')
+		while (map->map_matrix[i][j] && map->map_matrix[i][j] != letter)
 			j++;
 		if (map->map_matrix[i][j])
 			break ;
@@ -69,7 +69,9 @@ void	init_player(t_game *data, t_p_data *player)
 {
 	int	*pos;
 
-	pos = find_player(&data->carte);
+	pos = find_letter(&data->carte, 'P');
+	if (!pos)
+		return ;
 	player->collected = 0;
 	player->steps = 0;
 	player->status = 0;

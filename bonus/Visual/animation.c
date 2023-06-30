@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:03:08 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 12:58:55 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:22:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	player_idle(t_game *data)
 	int			dir;
 	int			*pos;
 
-	pos = find_player(&data->carte);
+	pos = find_letter(&data->carte, 'P');
 	if (!pos)
 		return ;
 	y = pos[0] * 96;
@@ -68,7 +68,9 @@ void	player_attack(t_game *data)
 	int			y;
 	int			*pos;
 
-	pos = find_player(&data->carte);
+	pos = find_letter(&data->carte, 'P');
+	if (!pos)
+		return ;
 	y = pos[0] * 96;
 	x = pos[1] * 96;
 	dir = data->player.facing;
@@ -87,10 +89,13 @@ void	player_attack(t_game *data)
 
 void	put_background(t_game *data)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
-	data->s.env.wooden_floor, data->player.pos.x, data->player.pos.y);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
-	data->s.env.wooden_floor, data->player.pos.to_x, data->player.pos.to_y);
+	if (!data->player.over)
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
+		data->s.env.wooden_floor, data->player.pos.x, data->player.pos.y);
+		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
+		data->s.env.wooden_floor, data->player.pos.to_x, data->player.pos.to_y);
+	}
 }
 
 void	all_background(t_game data)
