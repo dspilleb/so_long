@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:03:08 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 17:22:13 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:53:52 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	player_idle(t_game *data)
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
 		return ;
-	y = pos[0] * 96;
-	x = pos[1] * 96;
+	y = pos[0] * CUBE_SIZE;
+	x = pos[1] * CUBE_SIZE;
+	if (frame <= 1)
+		face_ennemy(data, x, y);
 	dir = data->player.facing;
 	if (frame > 3)
 		frame = 0;
@@ -53,7 +55,6 @@ void	player_movement(t_game *data)
 	{
 		frame = 0;
 		data->player.status = 0;
-		face_ennemy(data, x, y);
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
 	data->s.player.movement[dir][frame], x, y);
@@ -71,8 +72,8 @@ void	player_attack(t_game *data)
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
 		return ;
-	y = pos[0] * 96;
-	x = pos[1] * 96;
+	y = pos[0] * CUBE_SIZE;
+	x = pos[1] * CUBE_SIZE;
 	dir = data->player.facing;
 	if (frame >= 4)
 	{
@@ -81,7 +82,7 @@ void	player_attack(t_game *data)
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
 	data->s.player.attack[dir][frame], x, y);
-	update_target(data, x / 96, y / 96);
+	update_target(data, x / CUBE_SIZE, y / CUBE_SIZE);
 	ennemy_death(data);
 	frame++;
 	free (pos);
@@ -115,10 +116,10 @@ void	all_background(t_game data)
 		{
 			mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, \
 				data.s.env.wooden_floor, x, y);
-			x += 96;
+			x += CUBE_SIZE;
 			j++;
 		}
-		y += 96;
+		y += CUBE_SIZE;
 		i++;
 	}
 }

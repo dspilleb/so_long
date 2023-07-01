@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 19:44:48 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 17:22:07 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:59:43 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ void	player_death(t_game *data)
 	int			y;
 	int			*pos;
 
+	if (data->player.over)
+		return ;
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
 		return ;
-	y = pos[0] * 96;
-	x = pos[1] * 96;
+	y = pos[0] * CUBE_SIZE;
+	x = pos[1] * CUBE_SIZE;
 	if (frame == 0)
 		mlx_put_image_to_window(data->mlx_ptr, \
 		data->mlx_win, data->s.player.d0, x, y);

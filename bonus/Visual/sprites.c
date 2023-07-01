@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 16:36:29 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:35:23 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ void	*sprite(t_game data, char letter)
 
 void	init_t_sprites(t_game *data)
 {
-	int		img_width;
-	int		img_height;
-
 	init_env_sprites(data);
 	data->s.player.idle = init_player_sprites(data, data->s.player.idle, \
 	"./Sprites/PS/Idle/", "I");
@@ -52,30 +49,31 @@ void	init_t_sprites(t_game *data)
 	(data, data->s.ennemy.idle, "./Sprites/ES/idle/", "I");
 	data->s.ennemy.death = init_mob_sprites \
 	(data, data->s.ennemy.idle, "./Sprites/ES/Death/", "D");
-	data->s.env.ground2 = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/ground2.xpm", &img_width, &img_height);
+	data->s.env.ground2 = put_img(data, "./Sprites/ground2.xpm");
 }
 
 void	***init_player_sprites(t_game *data, void ***arr, \
 char *path, char *name)
 {
-	int		img_width;
-	int		img_height;
+	int		nb;
 	int		i;
 	int		j;
 	char	*tmp_path;
 
 	j = -1;
-	arr = malloc(sizeof(void **) * 5);
-	while (++j <= 3)
+	if (name == "M")
+		nb = 6;
+	else
+		nb = 4;
+	arr = malloc(sizeof(void **) * 4);
+	while (++j < 4)
 	{
 		i = -1;
-		arr[j] = malloc(sizeof(void *) * (6));
-		while (++i <= 5)
+		arr[j] = malloc(sizeof(void *) * (nb));
+		while (++i < nb)
 		{
 			tmp_path = create_path(path, name, j, i);
-			arr[j][i] = mlx_xpm_file_to_image(data->mlx_ptr, \
-			tmp_path, &img_width, &img_height);
+			arr[j][i] = put_img(data, tmp_path);
 			free(tmp_path);
 		}
 	}
@@ -84,25 +82,14 @@ char *path, char *name)
 
 void	init_env_sprites(t_game *data)
 {
-	int		img_width;
-	int		img_height;
 
-	data->s.env.collectible = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/collectible.xpm", &img_width, &img_height);
-	data->s.env.wall = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/wall.xpm", &img_width, &img_height);
-	data->s.env.wooden_floor = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/wooden_floor.xpm", &img_width, &img_height);
-	data->s.env.exit_opened = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/opened_door.xpm", &img_width, &img_height);
-	data->s.env.exit_closed = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/closed_door.xpm", &img_width, &img_height);
-	data->s.env.wall2 = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/wall2.xpm", &img_width, &img_height);
-	data->s.env.wall3 = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/wall3.xpm", &img_width, &img_height);
-	data->s.player.d0 = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/PS/Dead/D0.xpm", &img_width, &img_height);
-	data->s.player.d1 = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./Sprites/PS/Dead/D1.xpm", &img_width, &img_height);
+	data->s.env.collectible = put_img(data, "./Sprites/collectible.xpm");
+	data->s.env.wall = put_img(data, "./Sprites/wall.xpm");
+	data->s.env.wooden_floor = put_img(data, "./Sprites/wooden_floor.xpm");
+	data->s.env.exit_opened = put_img(data, "./Sprites/opened_door.xpm");
+	data->s.env.exit_closed = put_img(data, "./Sprites/closed_door.xpm");
+	data->s.env.wall2 = put_img(data, "./Sprites/wall2.xpm");
+	data->s.env.wall3 = put_img(data, "./Sprites/wall3.xpm");
+	data->s.player.d0 = put_img(data, "./Sprites/PS/Dead/D0.xpm");
+	data->s.player.d1 = put_img(data, "./Sprites/PS/Dead/D1.xpm");
 }

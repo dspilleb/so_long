@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:43:10 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/17 10:44:23 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:23:53 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	update_player_data(t_game *data, int facing, int status)
 void	**init_mob_sprites(t_game *data, void **arr, \
 char *path, char *name)
 {
-	int		img_width;
-	int		img_height;
 	int		i;
 	char	*num;
 	char	*tmp_path;
@@ -39,8 +37,7 @@ char *path, char *name)
 		tmp_path = ft_join(tmp_path, num);
 		tmp_path = ft_join(tmp_path, ".xpm");
 		free(num);
-		arr[i] = mlx_xpm_file_to_image(data->mlx_ptr, \
-		tmp_path, &img_width, &img_height);
+		arr[i] = put_img(data, tmp_path);
 		free(tmp_path);
 	}
 	return (arr);
@@ -77,10 +74,10 @@ void	fill_screen(t_game data)
 			if (data.carte.map_matrix[i][j] != 'P')
 				mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, \
 				sprite(data, data.carte.map_matrix[i][j]), x, y);
-			x += 96;
+			x += CUBE_SIZE;
 			j++;
 		}
-		y += 96;
+		y += CUBE_SIZE;
 		i++;
 	}
 }

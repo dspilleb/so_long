@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:15:25 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/03/01 09:33:07 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:42:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	face_ennemy(t_game *data, int x1, int y1)
 	int	x;
 	int	y;
 
-	x = x1 / 96;
-	y = y1 / 96;
+	x = x1 / CUBE_SIZE;
+	y = y1 / CUBE_SIZE;
 	if (data->carte.map_matrix[y - 1][x] == 'M')
 		data->player.facing = 0;
 	else if (data->carte.map_matrix[y][x + 1] == 'M')
@@ -69,12 +69,12 @@ void	ennemy_death(t_game *data)
 		data->carte.map_matrix[y][x] = '0';
 		data->carte.monsters--;
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
-		data->s.env.wooden_floor, x * 96, y * 96);
+		data->s.env.wooden_floor, x * CUBE_SIZE, y * CUBE_SIZE);
 		return ;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
-	data->s.env.wooden_floor, x * 96, y * 96);
+	data->s.env.wooden_floor, x * CUBE_SIZE, y * CUBE_SIZE);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
-	data->s.ennemy.death[frame], x * 96, y * 96);
+	data->s.ennemy.death[frame], x * CUBE_SIZE, y * CUBE_SIZE);
 	frame++;
 }

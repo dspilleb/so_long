@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:19:13 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 17:30:28 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:30:29 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	free_player_sprites(t_game *data)
 	int	j;
 
 	i = -1;
-	j = -1;
 	while (++i <= 3)
 	{
 		j = -1;
@@ -50,8 +49,10 @@ void	free_player_sprites(t_game *data)
 		{
 			free(data->s.player.attack[i][j]);
 			free(data->s.player.idle[i][j]);
-			free(data->s.player.movement[i][j]);
 		}
+		j = -1;
+		while (++j <= 5)
+			free(data->s.player.movement[i][j]);
 	}
 	free(data->s.player.d0);
 	free(data->s.player.d1);
@@ -66,8 +67,8 @@ void	open_exit(t_game *data)
 	pos = find_letter(&data->carte, 'E');
 	if (!pos)
 		return ;
-	x = pos[1] * 96;
-	y = pos[0] * 96;
+	x = pos[1] * CUBE_SIZE;
+	y = pos[0] * CUBE_SIZE;
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
 	data->s.env.exit_opened, x, y);
 	free (pos);

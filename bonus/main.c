@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 17:08:02 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/02 00:03:22 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	count(t_game *data)
 
 void	init_game(t_game *data, t_data *img)
 {
-	data->res_x = data->carte.columns * 96;
-	data->res_y = data->carte.lines * 96;
+	data->res_x = data->carte.columns * CUBE_SIZE;
+	data->res_y = data->carte.lines * CUBE_SIZE;
 	data->mlx_ptr = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx_ptr, data->res_x, \
 	data->res_y, "./so_long");
@@ -76,18 +76,15 @@ void	init_game(t_game *data, t_data *img)
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game	data;
 	t_data	img;
 
-	data.carte = check_map_validity("./maps/map.ber");
-	if (!data.carte.validity)
-	{
-		printf("la carte n'est pas valide.\n");
+	if (ac != 2)
 		return (0);
-	}
-	data.carte.map_matrix = ft_map_matrix("./maps/map.ber", data.carte);
+	if (!set_map(&data, av[1]))
+		return (0);
 	init_game(&data, &img);
 	init_player(&data, &data.player);
 	init_t_sprites(&data);

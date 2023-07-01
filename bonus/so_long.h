@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 17:29:06 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:56:22 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <string.h>
 //change path if on Mac_OS
 # include <mlx.h>
+
+# define CUBE_SIZE 96
 
 //linux
 # define Z 122
@@ -166,4 +168,9 @@ void		free_env_sprites(t_game *data);
 void		free_mob_sprites(t_game *data);
 void		free_player_sprites(t_game *data);
 void		open_exit(t_game *data);
+char		**paint(char **map, int i, int j);
+void		check_path(char *map, t_map_data *data);
+int			checkitems(char **map);
+void		*put_img(t_game *data, char *path);
+int			set_map(t_game *data, char *path);
 #endif

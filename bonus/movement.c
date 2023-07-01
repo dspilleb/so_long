@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:14:27 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 17:29:27 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:42:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	right_movement(t_game *data, char direction)
 			update_player_data(data, 1, 3);
 			data->carte.map_matrix[y][x + 1] = 'P';
 			data->carte.map_matrix[y][x] = '0';
-			data->player.pos.to_x = (x + 1) * 96;
-			data->player.pos.to_y = y * 96;
-			data->player.pos.x = pos[1] * 96;
-			data->player.pos.y = pos[0] * 96;
+			data->player.pos.to_x = (x + 1) * CUBE_SIZE;
+			data->player.pos.to_y = y * CUBE_SIZE;
+			data->player.pos.x = pos[1] * CUBE_SIZE;
+			data->player.pos.y = pos[0] * CUBE_SIZE;
 		}
 	}
 	free (pos);
@@ -57,10 +57,10 @@ void	left_movement(t_game *data, char direction)
 			update_player_data(data, 3, 3);
 			data->carte.map_matrix[y][x - 1] = 'P';
 			data->carte.map_matrix[y][x] = '0';
-			data->player.pos.to_x = (x - 1) * 96;
-			data->player.pos.to_y = y * 96;
-			data->player.pos.x = pos[1] * 96;
-			data->player.pos.y = pos[0] * 96;
+			data->player.pos.to_x = (x - 1) * CUBE_SIZE;
+			data->player.pos.to_y = y * CUBE_SIZE;
+			data->player.pos.x = pos[1] * CUBE_SIZE;
+			data->player.pos.y = pos[0] * CUBE_SIZE;
 		}
 	}
 	free (pos);
@@ -84,10 +84,10 @@ void	up_movement(t_game *data, char direction)
 			update_player_data(data, 0, 3);
 			data->carte.map_matrix[y - 1][x] = 'P';
 			data->carte.map_matrix[y][x] = '0';
-			data->player.pos.to_x = x * 96;
-			data->player.pos.to_y = (y - 1) * 96;
-			data->player.pos.x = pos[1] * 96;
-			data->player.pos.y = pos[0] * 96;
+			data->player.pos.to_x = x * CUBE_SIZE;
+			data->player.pos.to_y = (y - 1) * CUBE_SIZE;
+			data->player.pos.x = pos[1] * CUBE_SIZE;
+			data->player.pos.y = pos[0] * CUBE_SIZE;
 		}
 	}
 	free (pos);
@@ -111,10 +111,10 @@ void	down_movement(t_game *data, char direction)
 			update_player_data(data, 2, 3);
 			data->carte.map_matrix[y + 1][x] = 'P';
 			data->carte.map_matrix[y][x] = '0';
-			data->player.pos.to_x = x * 96;
-			data->player.pos.to_y = (y + 1) * 96;
-			data->player.pos.x = pos[1] * 96;
-			data->player.pos.y = pos[0] * 96;
+			data->player.pos.to_x = x * CUBE_SIZE;
+			data->player.pos.to_y = (y + 1) * CUBE_SIZE;
+			data->player.pos.x = pos[1] * CUBE_SIZE;
+			data->player.pos.y = pos[0] * CUBE_SIZE;
 		}
 	}
 	free (pos);

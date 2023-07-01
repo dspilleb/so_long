@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:52:40 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 11:31:44 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/01 12:04:15 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char	**ft_map_matrix(char *map, t_map_data data)
 
 	i = -1;
 	fd = open(map, O_RDONLY);
+	if (!data.validity)
+		return (NULL);
 	map_matrix = (char **)ft_calloc(sizeof(char *), data.lines + 1);
 	if (!map_matrix)
 		return (NULL);

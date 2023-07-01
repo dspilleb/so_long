@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 09:31:53 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 11:31:08 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:42:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	monster_idle2(t_game *data, int *pos, int frame)
 	int			x;
 	int			y;
 
-	y = pos[0] * 96;
-	x = pos[1] * 96;
+	y = pos[0] * CUBE_SIZE;
+	x = pos[1] * CUBE_SIZE;
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
 	data->s.env.wooden_floor, x, y);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
