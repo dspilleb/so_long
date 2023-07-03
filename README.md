@@ -19,7 +19,7 @@
 ## ⚔️ The game
 >In order to complete the game, players must avoid all enemies and acquire all of the collectibles on the map before taking the exit. ennemies can be vanquished by using your sword.
 
-![Screenshot] (game.png)
+![Screenshot](game.png)
 <h2 align="center">
 	Running Game
 </h2>
