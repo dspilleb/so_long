@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/03 15:56:58 by dspilleb          #+#    #+#             */
+/*   Updated: 2023/07/03 18:13:31 by dspilleb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../GNL/get_next_line.h"
@@ -7,12 +19,25 @@
 # include <string.h>
 # include <mlx.h>
 # include <stdbool.h>
+# include <stdlib.h>
 
-# define Z 122
-# define Q 113
-# define D 100
-# define S 115
-# define ESC 65307
+# define CUBE_SIZE 96
+
+//linux
+//# define Z 122
+//# define Q 113
+//# define D 100
+//# define S 115
+//# define ESC 65307
+//# define F 102
+
+//Mac_OS
+# define Z 13
+# define Q 0
+# define D 2
+# define S 1
+# define ESC 53
+# define F 3
 
 typedef struct sprites
 {
@@ -61,8 +86,6 @@ typedef struct game
 	t_p_data	player;
 	t_sprites	s;
 }	t_game;
-
-void		end_t_game(t_game *data);
 void		*sprite(t_game data, char letter, int keycode);
 int			*find_player(t_map_data *map);
 void		check_walls(char *line, int count, t_map_data *data);
@@ -78,5 +101,12 @@ void		side_movement(t_game *data, char direction);
 void		vertical_movement(t_game *data, char direction);
 void		fill_screen(t_game data, int res_x, int res_y, int keycode);
 void		init_t_sprites(t_game *data);
+void		free_sprites(t_game *data);
+void		check_path(char *map, t_map_data *data);
+char		**paint(char **map, int i, int j);
+int			checkitems(char **map);
+void		*put_img(t_game *data, char *path);
+int			set_map(t_game *data, char *path);
+int			end_game(t_game *data);
 
 #endif

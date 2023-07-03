@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/17 13:16:27 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:18:19 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,15 @@ void	*sprite(t_game data, char letter, int keycode)
 
 void	init_t_sprites(t_game *data)
 {
-	int		img_width;
-	int		img_height;
-
-	data->s.collectible = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/collectible.xpm", &img_width, &img_height);
-	data->s.wall = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/wall.xpm", &img_width, &img_height);
-	data->s.wooden_floor = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/wooden_floor.xpm", &img_width, &img_height);
-	data->s.exit_opened = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/opened_door.xpm", &img_width, &img_height);
-	data->s.exit_closed = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/closed_door.xpm", &img_width, &img_height);
-	data->s.player_south = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/player_south.xpm", &img_width, &img_height);
-	data->s.player_east = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/player_east.xpm", &img_width, &img_height);
-	data->s.player_north = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/player_north.xpm", &img_width, &img_height);
-	data->s.player_west = mlx_xpm_file_to_image(data->mlx_ptr, \
-	"./source/player_west.xpm", &img_width, &img_height);
+	data->s.collectible = put_img(data, "./source/collectible.xpm");
+	data->s.wall = put_img(data, "./source/wall.xpm");
+	data->s.wooden_floor = put_img(data, "./source/wooden_floor.xpm");
+	data->s.exit_opened = put_img(data, "./source/opened_door.xpm");
+	data->s.exit_closed = put_img(data, "./source/closed_door.xpm");
+	data->s.player_south = put_img(data, "./source/player_south.xpm");
+	data->s.player_east = put_img(data, "./source/player_east.xpm");
+	data->s.player_north = put_img(data, "./source/player_north.xpm");
+	data->s.player_west = put_img(data, "./source/player_west.xpm");
 }
 
 void	fill_screen(t_game data, int res_x, int res_y, int keycode)
@@ -83,10 +71,23 @@ void	fill_screen(t_game data, int res_x, int res_y, int keycode)
 		{
 			mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, \
 			sprite(data, data.carte.map_matrix[i][j], keycode), x, y);
-			x += 96;
+			x += CUBE_SIZE;
 			j++;
 		}
-		y += 96;
+		y += CUBE_SIZE;
 		i++;
 	}
+}
+
+void	free_sprites(t_game *data)
+{
+	free(data->s.collectible);
+	free(data->s.exit_closed);
+	free(data->s.exit_opened);
+	free(data->s.player_east);
+	free(data->s.player_north);
+	free(data->s.player_south);
+	free(data->s.player_west);
+	free(data->s.wall);
+	free(data->s.wooden_floor);
 }

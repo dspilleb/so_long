@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 11:50:50 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/17 12:44:20 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:23:34 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,7 @@ t_map_data	check_map_validity(char *map)
 	}
 	if (data.character != 1 || data.collectibles <= 0 || data.exit != 1)
 		data.validity = 0;
+	data.map_matrix = ft_map_matrix(map, data);
+	check_path(map, &data);
 	return (data);
 }

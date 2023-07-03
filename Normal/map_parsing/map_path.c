@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 09:34:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 17:44:40 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:53:28 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_path(char *map, t_map_data *data)
 		data->validity = 0;
 		return ;
 	}
-	pos = find_letter(data, 'P');
+	pos = find_player(data);
 	if (!pos)
 	{
 		data->validity = 0;
@@ -33,9 +33,9 @@ void	check_path(char *map, t_map_data *data)
 	{
 		tmp_map = paint(tmp_map, pos[0], pos[1]);
 		data->validity = checkitems(tmp_map);
+		free_matrix(tmp_map);
 	}
 	free(pos);
-	free_matrix(tmp_map);
 }
 
 char	**paint(char **map, int i, int j)

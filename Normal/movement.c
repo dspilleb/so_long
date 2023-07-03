@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:14:27 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/17 13:14:28 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:08:30 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	can_move(t_game *data, char letter)
 		printf("Vous n'avez pas récolté tout les collectibles !\n");
 		return (0);
 	}
-	if (letter == 'E' && data->player.collected == data->carte.collectibles)
+	else if (letter == 'E' && data->player.collected == data->carte.collectibles)
 		data->player.status = 1;
 	return (1);
 }

@@ -2,7 +2,7 @@ NAME = so_long.out
 
 SRC = $(MAIN_SRC) $(SRC_GNL) $(SRC_MAP) $(SRC_GAME)
 
-MAIN_SRC = ./*.c ./Visual/* ./Utils/*
+MAIN_SRC = ./*.c ./Visual/*.c ./Utils/*.c
 
 LIBFT_A = libft.a
 LIBF_DIR = ../libft/
@@ -19,7 +19,7 @@ SRC_GAME = $(addprefix ./, $(GAME))
 
 OBJ = *.o
 
-FLAGS = -fsanitize=address -g
+FLAGS =
 INCLUDE = -lmlx -framework OpenGL -framework AppKit
 
 NONE='\033[0m'

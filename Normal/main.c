@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/02/17 13:09:24 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:16:16 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ int	*find_player(t_map_data *map)
 	return (position);
 }
 
-void	end_t_game(t_game *data)
+int	end_game(t_game *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
-	printf("ESC DESTROYED\n");
+	if (data->carte.map_matrix)
+		free_matrix(data->carte.map_matrix);
+	free_sprites(data);
 	exit(1);
+	return (0);
 }
 
 int	actions(int keycode, t_game *data)
@@ -58,7 +61,7 @@ int	actions(int keycode, t_game *data)
 	else if (keycode == D)
 		side_movement(data, 'D');
 	else if (keycode == ESC)
-		end_t_game(data);
+		end_game(data);
 	movement -= data->player.steps;
 	if (movement)
 	{
@@ -67,7 +70,7 @@ int	actions(int keycode, t_game *data)
 		printf("Steps : %d\n", data->player.steps);
 	}
 	if (data->player.status)
-		end_t_game(data);
+		end_game(data);
 	return (0);
 }
 
@@ -78,19 +81,15 @@ void	init_player(t_p_data *player)
 	player->status = 0;
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game	data;
 	t_data	img;
 
-	data.carte = check_map_validity("./maps/map.ber");
-	if (data.carte.validity)
-		data.carte.map_matrix = ft_map_matrix("./maps/map.ber", data.carte);
-	else
-	{
-		printf("la carte n'est pas valide.\n");
-		exit (1);
-	}
+	if (ac != 2)
+		return (0);
+	else if (!set_map(&data, av[1]))
+		return (0);
 	init_player(&data.player);
 	data.mlx_ptr = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx_ptr, data.carte.columns * 96, \

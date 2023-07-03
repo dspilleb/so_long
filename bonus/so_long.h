@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 14:08:44 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:55:32 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 //change path if on Mac_OS
 # include <mlx.h>
+# include <stdlib.h>
 
 # define CUBE_SIZE 96
 
