@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:19:13 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/01 11:30:29 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:31:48 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,16 @@ void	free_mob_sprites(t_game *data)
 
 	i = -1;
 	while (++i < 4)
-		free(data->s.ennemy.idle[i]);
+	{
+		if (data->s.ennemy.idle[i])
+			free(data->s.ennemy.idle[i]);
+	}
 	i = -1;
 	while (++i < 4)
-		free(data->s.ennemy.death[i]);
+	{
+		if (data->s.ennemy.death[i])
+			free(data->s.ennemy.death[i]);
+	}
 }
 
 void	free_player_sprites(t_game *data)
@@ -47,15 +53,22 @@ void	free_player_sprites(t_game *data)
 		j = -1;
 		while (++j <= 3)
 		{
-			free(data->s.player.attack[i][j]);
-			free(data->s.player.idle[i][j]);
+			if (data->s.player.attack[i][j])
+				free(data->s.player.attack[i][j]);
+			if (data->s.player.idle[i][j])
+				free(data->s.player.idle[i][j]);
 		}
 		j = -1;
 		while (++j <= 5)
-			free(data->s.player.movement[i][j]);
+		{
+			if (data->s.player.movement[i][j])
+				free(data->s.player.movement[i][j]);
+		}
 	}
-	free(data->s.player.d0);
-	free(data->s.player.d1);
+	if (data->s.player.d0)
+		free(data->s.player.d0);
+	if (data->s.player.d1)
+		free(data->s.player.d1);
 }
 
 void	open_exit(t_game *data)

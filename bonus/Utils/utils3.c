@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:48:05 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 17:45:08 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:29:42 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ int	set_map(t_game *data, char *path)
 		return (0);
 	}
 	return (1);
+}
+
+void	*malloc_fail(t_game *data, void *test)
+{
+	if (!test)
+		data->player.over = 1;
+	return (test);
 }

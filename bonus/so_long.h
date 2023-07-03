@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 17:55:32 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:33:09 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,4 +174,5 @@ void		check_path(char *map, t_map_data *data);
 int			checkitems(char **map);
 void		*put_img(t_game *data, char *path);
 int			set_map(t_game *data, char *path);
+void		*malloc_fail(t_game *data, void *test);
 #endif

@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 15:07:31 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:47:11 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 char	*ft_join(char *s1, char *s2)
 {
 	size_t		i;
-	size_t		end_s1;
 	size_t		end_s2;
 	char		*str;
 
 	i = -1;
+	if (!s2)
+		return (NULL);
 	if (!s1)
 	{
 		s1 = (char *)malloc(1 * sizeof(char));
+		if (!s1)
+			return (NULL);
 		s1[0] = 0;
 	}
-	end_s1 = ft_strlen(s1);
-	if (!s2 || !s1)
-		return (NULL);
 	end_s2 = ft_strlen(s2);
-	str = malloc(sizeof(char) * (end_s1 + end_s2 + 1));
+	str = malloc(sizeof(char) * (ft_strlen(s1) + end_s2 + 1));
 	if (!str)
 		return (NULL);
-	ft_strlcpy(str, s1, end_s1 + 1);
+	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
 	while (++i < end_s2)
-		str[end_s1 + i] = s2[i];
-	str[end_s1 + i] = '\0';
+		str[ft_strlen(s1) + i] = s2[i];
+	str[ft_strlen(s1) + i] = '\0';
 	free(s1);
 	return (str);
 }
