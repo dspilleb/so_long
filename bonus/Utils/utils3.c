@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:48:05 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/01 23:56:48 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:27:19 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	set_map(t_game *data, char *path)
 	if (!data->carte.validity)
 	{
 		free_matrix(data->carte.map_matrix);
-		printf("la carte n'est pas valide.\n");
+		printf("Error\nLa carte n'est pas valide.\n");
 		return (0);
 	}
 	return (1);
