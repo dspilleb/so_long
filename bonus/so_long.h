@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/01 23:56:22 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:08:44 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@
 # define CUBE_SIZE 96
 
 //linux
-# define Z 122
-# define Q 113
-# define D 100
-# define S 115
-# define ESC 65307
-# define F 102
+//# define Z 122
+//# define Q 113
+//# define D 100
+//# define S 115
+//# define ESC 65307
+//# define F 102
 
 //Mac_OS
-// # define Z 13
-// # define Q 0
-// # define D 2
-// # define S 1
-// # define ESC 53
-// # define F 3
+# define Z 13
+# define Q 0
+# define D 2
+# define S 1
+# define ESC 53
+# define F 3
 
 typedef struct position
 {

@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/01 11:37:05 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:07:31 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void	init_player(t_game *data, t_p_data *player)
 	int	*pos;
 
 	pos = find_letter(&data->carte, 'P');
+	if (!pos)
+	{
+		player->over = 1;
+		return ;
+	}
 	player->collected = 0;
 	player->steps = 0;
 	player->status = 0;
@@ -84,11 +89,13 @@ void	init_player(t_game *data, t_p_data *player)
 
 int	end_t_game(t_game *data)
 {
+	data->player.over = 1;
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	free_env_sprites(data);
 	free_matrix(data->carte.map_matrix);
 	free_mob_sprites(data);
 	free_player_sprites(data);
+	exit(1);
 	return (0);
 }
 

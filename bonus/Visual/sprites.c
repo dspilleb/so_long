@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/01 11:35:23 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:32:18 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char *path, char *name)
 	char	*tmp_path;
 
 	j = -1;
-	if (name == "M")
+	if (!strcmp(name, "M"))
 		nb = 6;
 	else
 		nb = 4;

@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/02 00:03:22 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:01:43 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	actions(int keycode, t_game *data)
 	if (keycode == ESC || data->player.over == 1)
 		end_t_game(data);
 	if (movement != data->player.steps)
-		printf("Steps : %d\n", data->player.steps);
+		steps_count(data);
 	return (0);
 }
 
@@ -41,6 +41,8 @@ int	count(t_game *data)
 {
 	static int	count;
 
+	if (data->player.over)
+		return (0);
 	if (count % 700 == 0 && data->player.status != 2)
 		monster_idle(data);
 	if ((count % 1000 == 0 && data->player.status == 2) || \
@@ -94,5 +96,5 @@ int	main(int ac, char **av)
 	mlx_hook(data.mlx_win, 17, 1L << 2, end_t_game, &data);
 	mlx_loop_hook(data.mlx_ptr, count, &data);
 	mlx_loop(data.mlx_ptr);
-	return (EXIT_SUCCESS);
+	return (0);
 }
