@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 18:16:16 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:42:23 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	actions(int keycode, t_game *data)
 	{
 		fill_screen (*data, data->carte.columns * 96, \
 		data->carte.lines * 96, keycode);
-		printf("Steps : %d\n", data->player.steps);
+		ft_printf("Steps : %d\n", data->player.steps);
 	}
 	if (data->player.status)
 		end_game(data);

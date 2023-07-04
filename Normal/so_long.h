@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:56:58 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 19:33:00 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:43:56 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 # include "../GNL/get_next_line.h"
 # include "../libft/libft.h"
+# include "../My_Printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>

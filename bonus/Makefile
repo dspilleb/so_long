@@ -19,7 +19,7 @@ SRC_GAME = $(addprefix ./, $(GAME))
 
 OBJ = *.o
 
-FLAGS = -fsanitize=address -g
+FLAGS =
 INCLUDE = -lmlx -framework OpenGL -framework AppKit
 
 NONE='\033[0m'

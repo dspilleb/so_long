@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 15:23:59 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:52:47 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char *path, char *name)
 
 void	init_env_sprites(t_game *data)
 {
-
 	data->s.env.collectible = put_img(data, "./Sprites/collectible.xpm");
 	data->s.env.wall = put_img(data, "./Sprites/wall.xpm");
 	data->s.env.wooden_floor = put_img(data, "./Sprites/wooden_floor.xpm");
