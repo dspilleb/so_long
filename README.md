@@ -47,5 +47,6 @@
 		<li>contain only one starting position</li>
 		<li>contain only one exit door</li>
 		<li>contain at least one collectible</li>
+		<li>Have a valid path</li>
 	</ul>
 </p>
