@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:56:58 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 16:43:56 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:35:24 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 # include "../libft/libft.h"
 # include "../My_Printf/ft_printf.h"
 # include <fcntl.h>
-# include <stdio.h>
-# include <string.h>
 # include <mlx.h>
-# include <stdbool.h>
 # include <stdlib.h>
 
 # define CUBE_SIZE 96
@@ -100,7 +97,7 @@ char		**ft_map_matrix(char *map, t_map_data data);
 int			can_move(t_game *data, char letter);
 void		side_movement(t_game *data, char direction);
 void		vertical_movement(t_game *data, char direction);
-void		fill_screen(t_game data, int res_x, int res_y, int keycode);
+void		fill_screen(t_game data, int keycode);
 void		init_t_sprites(t_game *data);
 void		free_sprites(t_game *data);
 void		check_path(char *map, t_map_data *data);

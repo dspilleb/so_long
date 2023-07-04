@@ -23,7 +23,7 @@ SRC_GAME = $(addprefix ./, $(GAME))
 
 OBJ = *.o
 
-FLAGS =
+FLAGS = -Wall -Wextra -Werror
 INCLUDE = -lmlx -framework OpenGL -framework AppKit
 
 NONE='\033[0m'

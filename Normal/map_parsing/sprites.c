@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 18:39:22 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:29:43 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_t_sprites(t_game *data)
 	data->s.player_west = put_img(data, "./source/player_west.xpm");
 }
 
-void	fill_screen(t_game data, int res_x, int res_y, int keycode)
+void	fill_screen(t_game data, int keycode)
 {
 	int	x;
 	int	y;
@@ -81,13 +81,13 @@ void	fill_screen(t_game data, int res_x, int res_y, int keycode)
 
 void	free_sprites(t_game *data)
 {
-	free(data->s.collectible);
-	free(data->s.exit_closed);
-	free(data->s.exit_opened);
-	free(data->s.player_east);
-	free(data->s.player_north);
-	free(data->s.player_south);
-	free(data->s.player_west);
-	free(data->s.wall);
-	free(data->s.wooden_floor);
+	mlx_destroy_image(data->mlx_ptr, data->s.collectible);
+	mlx_destroy_image(data->mlx_ptr, data->s.exit_closed);
+	mlx_destroy_image(data->mlx_ptr, data->s.exit_opened);
+	mlx_destroy_image(data->mlx_ptr, data->s.player_east);
+	mlx_destroy_image(data->mlx_ptr, data->s.player_north);
+	mlx_destroy_image(data->mlx_ptr, data->s.player_south);
+	mlx_destroy_image(data->mlx_ptr, data->s.player_west);
+	mlx_destroy_image(data->mlx_ptr, data->s.wall);
+	mlx_destroy_image(data->mlx_ptr, data->s.wooden_floor);
 }

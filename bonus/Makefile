@@ -11,15 +11,15 @@ LIBFT  = $(addprefix $(LIBF_DIR), $(LIBFT_A))
 GNL = get_next_line.c get_next_line_utils.c
 SRC_GNL = $(addprefix ../GNL/, $(GNL))
 
-MAP = parsing.c map_validity.c map_path.c
+MAP = parsing_bonus.c map_validity_bonus.c map_path_bonus.c
 SRC_MAP = $(addprefix ./map_parsing/, $(MAP))
 
-GAME =	movement.c
+GAME =	movement_bonus.c
 SRC_GAME = $(addprefix ./, $(GAME))
 
 OBJ = *.o
 
-FLAGS =
+FLAGS = -Wall -Wextra -Werror
 INCLUDE = -lmlx -framework OpenGL -framework AppKit
 
 NONE='\033[0m'

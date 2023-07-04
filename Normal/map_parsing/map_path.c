@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 09:34:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 17:53:28 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:24:32 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@ void	check_path(char *map, t_map_data *data)
 		return ;
 	}
 	tmp_map = ft_map_matrix(map, *data);
-	if (tmp_map)
+	if (!tmp_map)
 	{
-		tmp_map = paint(tmp_map, pos[0], pos[1]);
-		data->validity = checkitems(tmp_map);
-		free_matrix(tmp_map);
+		free(pos);
+		data->validity = 0;
+		return ;
 	}
+	tmp_map = paint(tmp_map, pos[0], pos[1]);
+	data->validity = checkitems(tmp_map);
+	free_matrix(tmp_map);
 	free(pos);
 }
 

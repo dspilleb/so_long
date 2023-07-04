@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   utils1_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 15:16:24 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:34:51 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	end_t_game(t_game *data)
 		free_matrix(data->carte.map_matrix);
 	free_mob_sprites(data);
 	free_player_sprites(data);
-	exit(1);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 

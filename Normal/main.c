@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 16:42:23 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:30:08 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	end_game(t_game *data)
 	if (data->carte.map_matrix)
 		free_matrix(data->carte.map_matrix);
 	free_sprites(data);
-	exit(1);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -65,8 +65,7 @@ int	actions(int keycode, t_game *data)
 	movement -= data->player.steps;
 	if (movement)
 	{
-		fill_screen (*data, data->carte.columns * 96, \
-		data->carte.lines * 96, keycode);
+		fill_screen (*data, keycode);
 		ft_printf("Steps : %d\n", data->player.steps);
 	}
 	if (data->player.status)
@@ -99,7 +98,7 @@ int	main(int ac, char **av)
 	img.img = mlx_new_image (data.mlx_ptr, data.carte.columns * 96, \
 	data.carte.lines * 96);
 	init_t_sprites(&data);
-	fill_screen (data, data.carte.columns * 96, data.carte.lines * 96, S);
+	fill_screen (data, S);
 	mlx_hook(data.mlx_win, 2, 1L << 0, actions, &data);
 	mlx_loop(data.mlx_ptr);
 	return (EXIT_SUCCESS);

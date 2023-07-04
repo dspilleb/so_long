@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 15:01:43 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:11:44 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	count(t_game *data)
 	if ((count % 1000 == 0 && data->player.status == 2) || \
 	(count % 2000 && data->player.status == 1) || \
 	(count % 700 == 0 && data->player.status == 3) \
-	|| count % 2000 == 0 && data->player.status == 0)
+	|| (count % 2000 == 0 && data->player.status == 0))
 	{
 		count = 0;
 		put_background(data);
