@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:43:10 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 19:34:38 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:24:48 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ char *path, char *name)
 	{
 		tmp_path = NULL;
 		tmp_path = ft_join(tmp_path, path);
+		if (!tmp_path)
+			end_t_game(data);
 		num = ft_itoa(i);
+		if (!num)
+			end_t_game(data);
 		tmp_path = ft_join(tmp_path, name);
 		tmp_path = ft_join(tmp_path, num);
 		tmp_path = ft_join(tmp_path, ".xpm");
 		free(num);
-		if (!malloc_fail(data, tmp_path))
-			return (NULL);
+		if (!tmp_path)
+			end_t_game(data);
 		arr[i] = put_img(data, tmp_path);
 		free(tmp_path);
 	}

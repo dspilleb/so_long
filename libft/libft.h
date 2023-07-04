@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:44:41 by dan               #+#    #+#             */
-/*   Updated: 2023/07/03 17:20:21 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:39:09 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_itoa(int n);
 size_t	ft_strlcpy(char *dest, char const *src, size_t size);
-
 #endif

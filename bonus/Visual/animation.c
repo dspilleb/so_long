@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:03:08 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/01 11:53:52 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:19:37 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	player_idle(t_game *data)
 
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
-		return ;
+		end_t_game(data);
 	y = pos[0] * CUBE_SIZE;
 	x = pos[1] * CUBE_SIZE;
 	if (frame <= 1)
@@ -71,7 +71,7 @@ void	player_attack(t_game *data)
 
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
-		return ;
+		end_t_game(data);
 	y = pos[0] * CUBE_SIZE;
 	x = pos[1] * CUBE_SIZE;
 	dir = data->player.facing;

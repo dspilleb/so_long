@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:14:27 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/06/30 17:42:13 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:18:53 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	right_movement(t_game *data, char direction)
 
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
-		return ;
+		end_t_game(data);
 	x = pos[1];
 	y = pos[0];
 	if (direction == 'D' && x < data->carte.columns - 1)
@@ -47,7 +47,7 @@ void	left_movement(t_game *data, char direction)
 
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
-		return ;
+		end_t_game(data);
 	x = pos[1];
 	y = pos[0];
 	if (direction == 'Q' && x > 0)
@@ -74,7 +74,7 @@ void	up_movement(t_game *data, char direction)
 
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
-		return ;
+		end_t_game(data);
 	x = pos[1];
 	y = pos[0];
 	if (direction == 'Z' && y > 0)
@@ -101,7 +101,7 @@ void	down_movement(t_game *data, char direction)
 
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
-		return ;
+		end_t_game(data);
 	x = pos[1];
 	y = pos[0];
 	if (direction == 'S' && y < data->carte.lines - 1)

@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 19:44:48 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/01 11:59:43 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:19:42 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	player_death(t_game *data)
 		return ;
 	pos = find_letter(&data->carte, 'P');
 	if (!pos)
-		return ;
+		end_t_game(data);
 	y = pos[0] * CUBE_SIZE;
 	x = pos[1] * CUBE_SIZE;
 	if (frame == 0)

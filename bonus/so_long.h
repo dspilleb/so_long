@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 19:33:09 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:48:21 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,6 @@ void		check_path(char *map, t_map_data *data);
 int			checkitems(char **map);
 void		*put_img(t_game *data, char *path);
 int			set_map(t_game *data, char *path);
-void		*malloc_fail(t_game *data, void *test);
+int			*find_monsters2(int i, int j);
+void		free_int_matrix(t_game *data, int **tab, int size);
 #endif

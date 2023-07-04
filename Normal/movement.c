@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:14:27 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 18:41:31 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:30:27 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	side_movement(t_game *data, char direction)
 
 	pos = find_player(&data->carte);
 	if (!pos)
-		return ;
+		end_game(data);
 	if (direction == 'D' && pos[1] < data->carte.columns - 1)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0]][pos[1] + 1]))
@@ -46,7 +46,7 @@ void	vertical_movement(t_game *data, char direction)
 
 	pos = find_player(&data->carte);
 	if (!pos)
-		return ;
+		end_game(data);
 	if (direction == 'Z' && pos[0] > 0)
 	{
 		if (can_move(data, data->carte.map_matrix[pos[0] - 1][pos[1]]))
@@ -83,7 +83,8 @@ int	can_move(t_game *data, char letter)
 		printf("Vous n'avez pas récolté tout les collectibles !\n");
 		return (0);
 	}
-	else if (letter == 'E' && data->player.collected == data->carte.collectibles)
+	else if (letter == 'E' && data->player.collected \
+	== data->carte.collectibles)
 		data->player.status = 1;
 	return (1);
 }

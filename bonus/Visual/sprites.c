@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 19:34:05 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:23:59 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ char *path, char *name)
 		while (++i < nb)
 		{
 			tmp_path = create_path(path, name, j, i);
-			if (!malloc_fail(data, tmp_path))
-				return (NULL);
+			if (!tmp_path)
+				end_t_game(data);
 			arr[j][i] = put_img(data, tmp_path);
 			free(tmp_path);
 		}

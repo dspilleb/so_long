@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 09:31:53 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/03 14:36:57 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:17:58 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	**find_monsters(t_game *data, int count)
 		return (NULL);
 	position = malloc(sizeof(int *) * (data->carte.monsters));
 	if (!position)
-		return (NULL);
+		end_t_game(data);
 	i = -1;
 	while (data->carte.map_matrix[++i])
 	{
@@ -68,12 +68,34 @@ int	**find_monsters(t_game *data, int count)
 		{
 			if (data->carte.map_matrix[i][j] == 'M')
 			{
-				position[count] = malloc(sizeof(int) * 2);
-				position[count][0] = i;
-				position[count][1] = j;
-				count++;
+				position[count] = find_monsters2(i, j);
+				if (!position[count++])
+					free_int_matrix(data, position, count);
 			}
 		}
 	}
 	return (position);
+}
+
+int	*find_monsters2(int i, int j)
+{
+	int	*tmp;
+
+	tmp = malloc(sizeof(int) * 2);
+	if (!tmp)
+		return (NULL);
+	tmp[0] = i;
+	tmp[1] = j;
+	return (tmp);
+}
+
+void	free_int_matrix(t_game *data, int **tab, int size)
+{
+	int	i;
+
+	i = -1;
+	while (++i < size)
+		free(tab[i]);
+	free(tab);
+	end_t_game(data);
 }
