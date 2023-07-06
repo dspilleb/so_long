@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 18:34:54 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:40:11 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,13 @@
 
 # define CUBE_SIZE 96
 
-//linux
-//# define Z 122
-//# define Q 113
-//# define D 100
-//# define S 115
-//# define ESC 65307
-//# define F 102
+# define Z 122
+# define Q 113
+# define D 100
+# define S 115
+# define ESC 65307
+# define F 102
 
-//Mac_OS
-# define Z 13
-# define Q 0
-# define D 2
-# define S 1
-# define ESC 53
-# define F 3
 
 typedef struct position
 {
@@ -81,14 +73,6 @@ typedef struct sprites
 	t_player_sprites	player;
 	t_ennemy_sprites	ennemy;
 }	t_sprites;
-typedef struct img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 typedef struct map
 {

@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:19:13 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 18:31:34 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:09:00 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,16 @@ void	free_mob_sprites(t_game *data)
 
 	i = -1;
 	while (++i < 4 && data->s.ennemy.idle)
+	{
 		mlx_destroy_image(data->mlx_ptr, data->s.ennemy.idle[i]);
+	}
 	i = -1;
 	while (++i < 4 && data->s.ennemy.death)
+	{
 		mlx_destroy_image(data->mlx_ptr, data->s.ennemy.death[i]);
+	}
+	free(data->s.ennemy.death);
+	free(data->s.ennemy.idle);
 }
 
 void	free_player_sprites(t_game *data)
@@ -66,6 +72,16 @@ void	free_player_sprites(t_game *data)
 		mlx_destroy_image(data->mlx_ptr, data->s.player.d0);
 	if (data->s.player.d1)
 		mlx_destroy_image(data->mlx_ptr, data->s.player.d1);
+	i = -1;
+	while (++i < 4)
+	{
+		free(data->s.player.idle[i]);
+		free(data->s.player.attack[i]);
+		free(data->s.player.movement[i]);
+	}
+	free(data->s.player.idle);
+	free(data->s.player.attack);
+	free(data->s.player.movement);
 }
 
 void	open_exit(t_game *data)

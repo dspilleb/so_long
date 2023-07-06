@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 18:34:51 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:35:28 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,14 @@ void	init_player(t_game *data, t_p_data *player)
 int	end_t_game(t_game *data)
 {
 	data->player.over = 1;
-	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	free_env_sprites(data);
 	if (data->carte.map_matrix)
 		free_matrix(data->carte.map_matrix);
 	free_mob_sprites(data);
 	free_player_sprites(data);
+	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

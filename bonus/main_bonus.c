@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 17:11:44 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:39:47 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	count(t_game *data)
 	return (0);
 }
 
-void	init_game(t_game *data, t_data *img)
+void	init_game(t_game *data)
 {
 	data->res_x = data->carte.columns * CUBE_SIZE;
 	data->res_y = data->carte.lines * CUBE_SIZE;
@@ -73,7 +73,6 @@ void	init_game(t_game *data, t_data *img)
 	data->mlx_win = mlx_new_window(data->mlx_ptr, data->res_x, \
 	data->res_y, "./so_long");
 	mlx_do_key_autorepeatoff(data->mlx_ptr);
-	img->img = mlx_new_image (data->mlx_ptr, data->res_x, data->res_y);
 	if (data->mlx_win == NULL || data->mlx_ptr == NULL)
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 }
@@ -81,13 +80,12 @@ void	init_game(t_game *data, t_data *img)
 int	main(int ac, char **av)
 {
 	t_game	data;
-	t_data	img;
 
 	if (ac != 2)
 		return (0);
 	if (!set_map(&data, av[1]))
 		return (0);
-	init_game(&data, &img);
+	init_game(&data);
 	init_player(&data, &data.player);
 	init_t_sprites(&data);
 	all_background(data);
