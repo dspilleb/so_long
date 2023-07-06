@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:19:13 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 17:54:49 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:04:04 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	free_mob_sprites(t_game *data)
 	{
 		mlx_destroy_image(data->mlx_ptr, data->s.ennemy.death[i]);
 	}
-	free(data->s.ennemy.death);
-	free(data->s.ennemy.idle);
+	if (data->s.ennemy.death)
+		free(data->s.ennemy.death);
+	if (data->s.ennemy.idle)
+		free(data->s.ennemy.idle);
 }
 
 void	free_player_sprites(t_game *data)
@@ -63,13 +65,13 @@ void	free_player_sprites(t_game *data)
 	while (++i <= 3)
 	{
 		j = -1;
-		while (++j <= 3 && data->s.player.attack[i])
+		while (++j <= 3 && data->s.player.attack[i][j])
 			mlx_destroy_image(data->mlx_ptr, data->s.player.attack[i][j]);
 		j = -1;
-		while (++j <= 3 && data->s.player.idle[i])
+		while (++j <= 3 && data->s.player.idle[i][j])
 			mlx_destroy_image(data->mlx_ptr, data->s.player.idle[i][j]);
 		j = -1;
-		while (++j <= 5 && data->s.player.movement[i])
+		while (++j <= 5 && data->s.player.movement[i][j])
 			mlx_destroy_image(data->mlx_ptr, data->s.player.movement[i][j]);
 	}
 	if (data->s.player.attack)

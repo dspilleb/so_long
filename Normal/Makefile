@@ -48,7 +48,7 @@ $(OBJ): $(SRC)
 
 exe: re
 	@make -C ./ clean
-	@echo $(YELLOW)"     - Executing $(NAME)... \n"$(NONE)
+	@echo $(YELLOW)"     - Executing $(NONE)
 	@./$(NAME) $(m)
 	@echo $(YELLOW)"\n     - Done -"$(NONE)
 clean:
@@ -58,7 +58,7 @@ clean:
 	@make -C $(PRINTF_DIR) clean
 
 fclean: clean
-	@echo $(CURSIVE)$(GRAY) "     - Removing $(NAME)..." $(NONE)
+	@echo $(CURSIVE)$(GRAY) "     - Removing" $(NONE)
 	@rm -rf $(NAME)
 	@make -C $(LIBF_DIR) fclean
 	@make -C $(PRINTF_DIR) fclean

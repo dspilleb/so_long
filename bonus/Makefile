@@ -33,7 +33,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo $(CURSIVE)$(GRAY) "     - Making libft..." $(NONE)
 	@make -C $(LIBF_DIR)
-	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(NONE)
+	@echo $(CURSIVE)$(GRAY) "     - Compiling" $(NONE)
 	@gcc $(FLAGS) $(OBJ) $(LIBFT) $(INCLUDE) -o $(NAME)
 	@echo $(GREEN)"- Compiled -"$(NONE)
 
@@ -47,7 +47,7 @@ clean:
 	@make -C $(LIBF_DIR) clean
 
 fclean: clean
-	@echo $(CURSIVE)$(GRAY) "     - Removing $(NAME)..." $(NONE)
+	@echo $(CURSIVE)$(GRAY) "     - Removing" $(NONE)
 	@rm -rf $(NAME)
 	@make -C $(LIBF_DIR) fclean
 

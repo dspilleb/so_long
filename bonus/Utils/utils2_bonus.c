@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:43:10 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 16:24:48 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:04:52 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	steps_count(t_game *data)
 	num = ft_itoa(data->player.steps);
 	if (!num)
 		return ;
-	tmp = ft_join(tmp, "Steps :");
+	tmp = ft_join(tmp, "Steps : ");
 	tmp = ft_join(tmp, num);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, \
 	data->s.env.wooden_floor, 0, 0);
