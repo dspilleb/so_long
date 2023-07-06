@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 17:58:03 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:28:25 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ int	main(int ac, char **av)
 	t_game	data;
 
 	if (ac != 2)
+	{
+		printf("Error\nMauvais nombre d'arguments\n");
 		return (0);
+	}
 	if (!set_map(&data, av[1]))
 		return (0);
 	init_game(&data);
