@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 15:00:31 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:14:39 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	main(int ac, char **av)
 	init_t_sprites(&data);
 	fill_screen (data, S);
 	mlx_hook(data.mlx_win, 2, 1L << 0, actions, &data);
+	mlx_hook(data.mlx_win, 17, 1L << 2, end_game, &data);
 	mlx_loop(data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }

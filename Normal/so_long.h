@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:56:58 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 14:57:29 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:24:02 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct game
 	t_p_data	player;
 	t_sprites	s;
 }	t_game;
+
 void		*sprite(t_game data, char letter, int keycode);
 int			*find_player(t_map_data *map);
 void		check_walls(char *line, int count, t_map_data *data);

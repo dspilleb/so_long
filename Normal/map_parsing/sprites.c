@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 18:29:43 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:11:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*sprite(t_game data, char letter, int keycode)
 {
 	if (letter == '0')
 		return (data.s.wooden_floor);
-	else if (letter == 'E')
+	if (letter == 'E')
 	{
 		if (data.player.collected == data.carte.collectibles)
 			return (data.s.exit_opened);
@@ -81,13 +81,22 @@ void	fill_screen(t_game data, int keycode)
 
 void	free_sprites(t_game *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->s.collectible);
-	mlx_destroy_image(data->mlx_ptr, data->s.exit_closed);
-	mlx_destroy_image(data->mlx_ptr, data->s.exit_opened);
-	mlx_destroy_image(data->mlx_ptr, data->s.player_east);
-	mlx_destroy_image(data->mlx_ptr, data->s.player_north);
-	mlx_destroy_image(data->mlx_ptr, data->s.player_south);
-	mlx_destroy_image(data->mlx_ptr, data->s.player_west);
-	mlx_destroy_image(data->mlx_ptr, data->s.wall);
-	mlx_destroy_image(data->mlx_ptr, data->s.wooden_floor);
+	if (data->s.collectible)
+		mlx_destroy_image(data->mlx_ptr, data->s.collectible);
+	if (data->s.exit_closed)
+		mlx_destroy_image(data->mlx_ptr, data->s.exit_closed);
+	if (data->s.exit_opened)
+		mlx_destroy_image(data->mlx_ptr, data->s.exit_opened);
+	if (data->s.player_east)
+		mlx_destroy_image(data->mlx_ptr, data->s.player_east);
+	if (data->s.player_north)
+		mlx_destroy_image(data->mlx_ptr, data->s.player_north);
+	if (data->s.player_south)
+		mlx_destroy_image(data->mlx_ptr, data->s.player_south);
+	if (data->s.player_west)
+		mlx_destroy_image(data->mlx_ptr, data->s.player_west);
+	if (data->s.wall)
+		mlx_destroy_image(data->mlx_ptr, data->s.wall);
+	if (data->s.wooden_floor)
+		mlx_destroy_image(data->mlx_ptr, data->s.wooden_floor);
 }
