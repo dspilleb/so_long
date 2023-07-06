@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:56:58 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 18:35:24 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:57:29 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,6 @@ typedef struct sprites
 	void	*player_north;
 	void	*player_west;
 }	t_sprites;
-typedef struct img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 typedef struct map
 {

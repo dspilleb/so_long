@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 12:35:28 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:55:42 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ int	end_t_game(t_game *data)
 	free_mob_sprites(data);
 	free_player_sprites(data);
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

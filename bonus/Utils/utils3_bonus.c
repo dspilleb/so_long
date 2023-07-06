@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   utils3_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:48:05 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 15:09:05 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:22:55 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,14 @@ int	set_map(t_game *data, char *path)
 		return (0);
 	}
 	return (1);
+}
+
+void	free_void_matrix(void ***tab, int size)
+{
+	int	i;
+
+	i = -1;
+	while (++i < size)
+		free(tab[i]);
+	free(tab);
 }

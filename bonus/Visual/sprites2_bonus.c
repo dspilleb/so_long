@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:19:13 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 12:09:00 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:24:05 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	free_env_sprites(t_game *data)
 		mlx_destroy_image(data->mlx_ptr, data->s.env.wall3);
 	if (data->s.env.ground2)
 		mlx_destroy_image(data->mlx_ptr, data->s.env.ground2);
+	if (data->s.player.d0)
+		mlx_destroy_image(data->mlx_ptr, data->s.player.d0);
+	if (data->s.player.d1)
+		mlx_destroy_image(data->mlx_ptr, data->s.player.d1);
 }
 
 void	free_mob_sprites(t_game *data)
@@ -68,20 +72,12 @@ void	free_player_sprites(t_game *data)
 		while (++j <= 5 && data->s.player.movement)
 			mlx_destroy_image(data->mlx_ptr, data->s.player.movement[i][j]);
 	}
-	if (data->s.player.d0)
-		mlx_destroy_image(data->mlx_ptr, data->s.player.d0);
-	if (data->s.player.d1)
-		mlx_destroy_image(data->mlx_ptr, data->s.player.d1);
-	i = -1;
-	while (++i < 4)
-	{
-		free(data->s.player.idle[i]);
-		free(data->s.player.attack[i]);
-		free(data->s.player.movement[i]);
-	}
-	free(data->s.player.idle);
-	free(data->s.player.attack);
-	free(data->s.player.movement);
+	if (data->s.player.attack)
+		free_void_matrix(data->s.player.attack, 4);
+	if (data->s.player.idle)
+		free_void_matrix(data->s.player.idle, 4);
+	if (data->s.player.movement)
+		free_void_matrix(data->s.player.movement, 4);
 }
 
 void	open_exit(t_game *data)

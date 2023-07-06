@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:18:16 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 12:40:11 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:23:03 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,21 @@
 
 # define CUBE_SIZE 96
 
-# define Z 122
-# define Q 113
-# define D 100
-# define S 115
-# define ESC 65307
-# define F 102
+//linux
+//# define Z 122
+//# define Q 113
+//# define D 100
+//# define S 115
+//# define ESC 65307
+//# define F 102
 
+//Mac_OS
+# define Z 13
+# define Q 0
+# define D 2
+# define S 1
+# define ESC 53
+# define F 3
 
 typedef struct position
 {
@@ -160,4 +168,5 @@ void		*put_img(t_game *data, char *path);
 int			set_map(t_game *data, char *path);
 int			*find_monsters2(int i, int j);
 void		free_int_matrix(t_game *data, int **tab, int size);
+void		free_void_matrix(void ***tab, int size);
 #endif

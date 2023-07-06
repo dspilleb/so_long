@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 18:30:08 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:00:31 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	init_player(t_p_data *player)
 int	main(int ac, char **av)
 {
 	t_game	data;
-	t_data	img;
 
 	if (ac != 2)
 		return (0);
@@ -95,8 +94,6 @@ int	main(int ac, char **av)
 	data.carte.lines * 96, "./so_long");
 	if (data.mlx_win == NULL || data.mlx_ptr == NULL)
 		return (EXIT_FAILURE);
-	img.img = mlx_new_image (data.mlx_ptr, data.carte.columns * 96, \
-	data.carte.lines * 96);
 	init_t_sprites(&data);
 	fill_screen (data, S);
 	mlx_hook(data.mlx_win, 2, 1L << 0, actions, &data);
