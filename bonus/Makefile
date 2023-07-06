@@ -1,4 +1,4 @@
-NAME = so_long.out
+NAME = so_long
 
 SRC = $(MAIN_SRC) $(SRC_GNL) $(SRC_MAP) $(SRC_GAME)
 
