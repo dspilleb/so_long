@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites.c                                          :+:      :+:    :+:   */
+/*   sprites_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:50:18 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/04 16:52:47 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:54:16 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char *path, char *name)
 	{
 		i = -1;
 		arr[j] = malloc(sizeof(void *) * (nb));
-		while (++i < nb)
+		while (++i < nb && arr[j])
 		{
 			tmp_path = create_path(path, name, j, i);
 			if (!tmp_path)

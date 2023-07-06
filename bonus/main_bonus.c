@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:09:23 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 12:39:47 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:58:03 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	init_game(t_game *data)
 	data->mlx_ptr = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx_ptr, data->res_x, \
 	data->res_y, "./so_long");
-	mlx_do_key_autorepeatoff(data->mlx_ptr);
 	if (data->mlx_win == NULL || data->mlx_ptr == NULL)
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 }

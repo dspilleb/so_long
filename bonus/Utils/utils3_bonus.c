@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:48:05 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 14:22:55 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:51:27 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int	set_map(t_game *data, char *path)
 
 	tmp = ft_strjoin("./maps/", path);
 	if (!tmp)
+	{
+		if (data->carte.map_matrix)
+			free_matrix(data->carte.map_matrix);
 		return (0);
+	}
 	data->carte = check_map_validity(tmp);
 	free (tmp);
 	if (!data->carte.validity)

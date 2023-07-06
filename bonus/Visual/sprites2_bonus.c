@@ -6,7 +6,7 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 13:19:13 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 14:24:05 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:54:49 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	free_player_sprites(t_game *data)
 	while (++i <= 3)
 	{
 		j = -1;
-		while (++j <= 3 && data->s.player.attack)
+		while (++j <= 3 && data->s.player.attack[i])
 			mlx_destroy_image(data->mlx_ptr, data->s.player.attack[i][j]);
 		j = -1;
-		while (++j <= 3 && data->s.player.idle)
+		while (++j <= 3 && data->s.player.idle[i])
 			mlx_destroy_image(data->mlx_ptr, data->s.player.idle[i][j]);
 		j = -1;
-		while (++j <= 5 && data->s.player.movement)
+		while (++j <= 5 && data->s.player.movement[i])
 			mlx_destroy_image(data->mlx_ptr, data->s.player.movement[i][j]);
 	}
 	if (data->s.player.attack)
