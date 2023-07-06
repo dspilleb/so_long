@@ -6,11 +6,11 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:48:05 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 17:51:27 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:33:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 void	*put_img(t_game *data, char *path)
 {

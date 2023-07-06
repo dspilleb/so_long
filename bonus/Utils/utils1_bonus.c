@@ -6,11 +6,11 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:24:33 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 18:06:45 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:33:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 char	*ft_join(char *s1, char *s2)
 {

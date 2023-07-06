@@ -6,11 +6,11 @@
 /*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 09:31:53 by dspilleb          #+#    #+#             */
-/*   Updated: 2023/07/06 14:01:57 by dspilleb         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:33:13 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 void	monster_idle(t_game *data)
 {
